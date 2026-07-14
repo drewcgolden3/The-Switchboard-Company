@@ -1,0 +1,6 @@
+name = "switchboard-chat"
+main = "chat-worker.js"
+compatibility_date = "2026-07-01"
+
+# Set the API key as a secret (never commit it):
+#   npx wrangler secret put ANTHROPIC_API_KEY
