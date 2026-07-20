@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free 15-Minute Website Consultation</title>
+  <meta name="description" content="Book a free 15-minute website consultation. See what's working, what's losing you money, and what to fix first." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="https://switchboardcompany.com/" aria-label="Switchboard Company home">
+        <img class="brand__logo" id="brandLogo" src="assets/logo.png" alt="" />
+        <span class="brand__txt" id="brand"></span>
+      </a>
+      <button class="btn btn--ghost btn--sm js-book">Book free call</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <span class="eyebrow" id="eyebrow"></span>
+      <h1 class="hero__title" id="headline"></h1>
+      <p class="hero__sub" id="subhead"></p>
+      <div class="hero__cta">
+        <button class="btn btn--primary btn--lg js-book" id="ctaMain"></button>
+        <span class="hero__ctasub" id="ctaSubtext"></span>
+      </div>
+      <ul class="trust" id="trust"></ul>
+    </div>
+    <div class="hero__glow" aria-hidden="true"></div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow section__eyebrow">What you get</span>
+        <h2 class="section__title">In 15 minutes, you'll know&hellip;</h2>
+      </div>
+      <div class="cards" id="benefits"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow section__eyebrow">The process</span>
+        <h2 class="section__title">How it works</h2>
+      </div>
+      <div class="steps" id="steps"></div>
+      <div class="section__cta">
+        <button class="btn btn--primary btn--lg js-book">Grab my free slot</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="section__head">
+        <span class="eyebrow section__eyebrow">FAQ</span>
+        <h2 class="section__title">Questions?</h2>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="finalcta">
+    <div class="wrap finalcta__inner">
+      <span class="eyebrow finalcta__eyebrow">Free 15-min consultation</span>
+      <h2 class="finalcta__title">Ready to stop leaving money on the table?</h2>
+      <p class="finalcta__sub">Book your free 15-minute website consultation. Weekdays, 9am&ndash;4pm.</p>
+      <button class="btn btn--light btn--lg js-book">Book my free 15-min call</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span id="footerBrand"></span>
+      <a id="footerEmail" href="#"></a>
+    </div>
+  </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="stickybar">
+    <button class="btn btn--primary js-book">Book free 15-min call</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
