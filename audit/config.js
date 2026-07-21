@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
      (Setup steps are in README.md — takes about 3 minutes.)
      Until you paste it, the buttons will alert a friendly reminder.
      ------------------------------------------------------------------- */
-  bookingUrl: "https://calendar.app.google/cqBGiM7jBpUfDLoT9",
+  bookingUrl: "https://calendly.com/drewcgolden/30min",
 
   /* -------------------------------------------------------------------
      2) YOUR NAME / BRAND
