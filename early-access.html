@@ -384,6 +384,14 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
 /* early-access page */
 .ea-hero{padding-top:clamp(116px,15vh,172px)}
 .ea-formwrap{max-width:660px;margin-inline:auto}
+
+/* Switchboard OS nav dropdown */
+.nav__item{position:relative;display:flex;align-items:center}
+.nav__drop{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);padding-top:10px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.nav__item:hover .nav__drop,.nav__item:focus-within .nav__drop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav__links .nav__drop a{display:block;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;white-space:nowrap;box-shadow:0 14px 34px -18px rgba(22,23,28,.4);color:var(--orange-deep);font-weight:600}
+.nav__links .nav__drop a::after{display:none}
+@media(max-width:820px){.nav__item{display:contents}.nav__drop{display:none}}
 </style>
 </head>
 <body>
@@ -399,8 +407,10 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
         <a href="who-we-are.html">Who we are</a>
         <a href="websites.html">Websites</a>
         <a href="index.html#process">Process</a>
-        <a href="ai-automation.html" class="active">Switchboard&nbsp;OS</a>
-        <a href="contact.html" style="color:var(--orange-deep);font-weight:600">Request&nbsp;a&nbsp;Demo</a>
+        <div class="nav__item">
+          <a href="ai-automation.html" class="active">Switchboard&nbsp;OS</a>
+          <div class="nav__drop"><a href="contact.html">Request a demo</a></div>
+        </div>
         <a href="index.html#portfolio">Work</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -445,7 +455,7 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
       <div class="lines">
         <div class="line">
           <span class="line__jack"></span>
-          <div><div class="line__code">PILLAR 01</div><div class="line__name">Automated lead capture</div><div class="line__desc">Missed calls get an instant text back, you get notified in real time, and every call, text, and message lands in one inbox.</div></div>
+          <div><div class="line__code">PILLAR 01</div><div class="line__name">AI receptionist &amp; lead capture</div><div class="line__desc">Every website visitor gets answered 24/7, interested ones are captured as leads, and you're notified in real time — everything lands in one pipeline.</div></div>
         </div>
         <div class="line">
           <span class="line__jack"></span>
@@ -507,10 +517,10 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
           <label for="interest">Which service interests you most?</label>
           <select id="interest" name="interest">
             <option>Not sure yet — show me what fits</option>
-            <option>Automated lead capture (missed-call text-back)</option>
-            <option>Reputation management (review requests)</option>
+            <option>AI receptionist &amp; lead capture</option>
+            <option>Review generation</option>
             <option>Search visibility (local SEO)</option>
-            <option>AI chat assistant</option>
+            <option>Automated follow-ups &amp; win-backs</option>
             <option>The whole engine</option>
           </select>
         </div>

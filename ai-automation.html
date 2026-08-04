@@ -396,6 +396,22 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
   .lines--three .line{border-right:1px solid rgba(255,255,255,.07)}
   .lines--three .line:last-child{border-right:0}
 }
+
+/* module example boxes + status tags */
+.ex{margin-top:1.1rem;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem 1.2rem;font-family:var(--mono);font-size:.78rem;line-height:1.75;color:#C9CAD1;white-space:pre-wrap;max-width:560px}
+.ex b{color:#fff;font-weight:600}
+.ex .in{color:#8ED0A9}
+.tag-live,.tag-soon{display:inline-block;margin-left:.55rem;border-radius:999px;padding:.14rem .6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.tag-live{background:rgba(16,185,129,.14);color:#4ADE9C}
+.tag-soon{background:rgba(245,158,11,.14);color:#F5B04C}
+
+/* Switchboard OS nav dropdown */
+.nav__item{position:relative;display:flex;align-items:center}
+.nav__drop{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);padding-top:10px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.nav__item:hover .nav__drop,.nav__item:focus-within .nav__drop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav__links .nav__drop a{display:block;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;white-space:nowrap;box-shadow:0 14px 34px -18px rgba(22,23,28,.4);color:var(--orange-deep);font-weight:600}
+.nav__links .nav__drop a::after{display:none}
+@media(max-width:820px){.nav__item{display:contents}.nav__drop{display:none}}
 </style>
 </head>
 <body>
@@ -410,8 +426,10 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
       <div class="nav__links">
         <a href="who-we-are.html">Who we are</a>
         <a href="websites.html">Websites</a>
-        <a href="ai-automation.html" class="active">Switchboard&nbsp;OS</a>
-        <a href="contact.html" style="color:var(--orange-deep);font-weight:600">Request&nbsp;a&nbsp;Demo</a>
+        <div class="nav__item">
+          <a href="ai-automation.html" class="active">Switchboard&nbsp;OS</a>
+          <div class="nav__drop"><a href="contact.html">Request a demo</a></div>
+        </div>
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav__cta">
@@ -429,8 +447,8 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
   <div class="wrap">
     <div class="shead shead--center reveal">
       <span class="eyebrow">Switchboard OS · live now</span>
-      <h2 class="head">One engine. Three jobs. Live today.</h2>
-      <p class="lede">Websites are what we build today — these three services are what's next. They make sure the people your site brings in don't slip away: every missed call answered, every happy customer asked for a review, and every search another chance to get found. We're launching with a founding group of ten clubs.</p>
+      <h2 class="head">A dashboard for sports businesses.</h2>
+      <p class="lede">One login for your whole club — website status, new leads, booking activity, the AI receptionist, reviews, and monthly reports, in one clean dashboard your front desk will actually use. Built exclusively for gyms, sports clubs, tennis clubs, swim clubs, and studios.</p>
       <span class="auto__badge" style="margin-top:1.6rem"><span class="pulse"></span> Live now · 10 founding spots · 90 days free · $349/mo locked</span>
     </div>
   </div>
@@ -441,86 +459,120 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
   <div class="wrap">
     <div class="auto__top">
       <div class="reveal">
-        <span class="auto__badge"><span class="pulse"></span> The services</span>
-        <h2 class="head">Three services, one switchboard.</h2>
+        <span class="auto__badge"><span class="pulse"></span> Inside Switchboard OS</span>
+        <h2 class="head">Six modules. One switchboard.</h2>
       </div>
-      <p class="lede reveal">When this launches you won't need all of it on day one — we'll start with the piece that moves the needle for your club, then add from there. Each one feeds the others.</p>
+      <p class="lede reveal">You won't need all of it on day one — we start with the piece that moves the needle for your club, then add from there. Each one feeds the others.</p>
     </div>
 
     <div class="pgroup reveal">
       <div class="pgroup__head">
-        <div class="line__code">PILLAR 01 — AUTOMATED LEAD CAPTURE</div>
-        <h3>Stop losing business when you're busy.</h3>
-        <p>Most lost leads aren't lost to a competitor's better work — they're lost to voicemail. We instantly text back missed calls to start the conversation for you, so the lead stays yours.</p>
+        <div class="line__code">MODULE 01 — CLIENT DASHBOARD <span class="tag-live">Live</span></div>
+        <h3>One login. Your whole club at a glance.</h3>
+        <p>Your own portal — switchboard.app/your-club. Log in and everything is right there: website status, new leads, booking activity, the AI receptionist, reviews, and monthly reports. This is the screen that replaces the sticky notes.</p>
       </div>
       <div class="panel">
         <div class="lines lines--three">
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">CAPTURE 01</div><div class="line__name">Instant lead text-back</div><div class="line__desc">A caller can't reach you? They get an instant, friendly text that starts the conversation — before they dial the next name on the list.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">CAPTURE 02</div><div class="line__name">Instant notifications</div><div class="line__desc">The moment a lead comes in — call, form, or message — you know about it on your phone, in real time.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">CAPTURE 03</div><div class="line__name">Centralized inbox</div><div class="line__desc">Calls, texts, and website messages land in one place, so nothing slips through the cracks.</div></div>
-          </div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">DASH 01</div><div class="line__name">Everything in one place</div><div class="line__desc">Leads, bookings, reviews, reports, and your website's health — no more juggling six tabs and a notebook.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">DASH 02</div><div class="line__name">Built for the front desk</div><div class="line__desc">Simple enough that anyone on staff can use it between check-ins. No training course required.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">DASH 03</div><div class="line__name">Website status</div><div class="line__desc">A live uptime check on your site, plus a place to request updates — you find out before your members do.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="pgroup reveal">
       <div class="pgroup__head">
-        <div class="line__code">PILLAR 02 — REPUTATION MANAGEMENT</div>
-        <h3>Turn happy customers into 5-star reviews.</h3>
-        <p>We make leaving a review effortless: every customer gets the same friendly ask with a one-tap link right after their visit, and you get a private "how did we do?" channel to catch and resolve issues quickly.</p>
+        <div class="line__code">MODULE 02 — LEAD MANAGEMENT <span class="tag-live">Live</span></div>
+        <h3>A CRM with just what a club needs. Not Salesforce.</h3>
+        <p>Every inquiry tracked from first contact to membership — add leads, update their status, and read the full conversation history on any of them.</p>
+        <div class="ex"><b>John Smith</b> · Interested: Adult Tennis Lessons · Source: Facebook Ad
+Status:  [New] → [Contacted] → [Booked] → [Member]
+Last activity: <span class="in">AI chatted yesterday</span></div>
       </div>
       <div class="panel">
         <div class="lines lines--three">
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">REPUTATION 01</div><div class="line__name">SMS &amp; email review requests</div><div class="line__desc">Every customer gets the same simple ask, timed right after their visit — consistent, automatic, no chasing.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">REPUTATION 02</div><div class="line__name">One-tap review links</div><div class="line__desc">One tap and they're on your Google review page. No hunting, no logins, no friction.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">REPUTATION 03</div><div class="line__name">Monitoring &amp; response</div><div class="line__desc">New reviews are tracked and answered — and a private feedback line gives every customer a direct way to reach you.</div></div>
-          </div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">LEADS 01</div><div class="line__name">Add &amp; track leads</div><div class="line__desc">From the chat widget, your forms, or by hand — every lead lands in one pipeline.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">LEADS 02</div><div class="line__name">Status that means something</div><div class="line__desc">New → Contacted → Booked → Member (or Lost). One glance tells you where every prospect stands.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">LEADS 03</div><div class="line__name">Conversation history</div><div class="line__desc">Every message the AI or the follow-up engine has exchanged with a lead, readable in one thread.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="pgroup reveal">
       <div class="pgroup__head">
-        <div class="line__code">PILLAR 03 — SEARCH VISIBILITY</div>
-        <h3>Get found when customers search for what you do.</h3>
-        <p>We make sure your site shows up naturally for the services you offer — so the people already looking for you actually find you.</p>
+        <div class="line__code">MODULE 03 — WEBSITE AI RECEPTIONIST <span class="tag-live">Live</span></div>
+        <h3>The chat bubble that never misses a visitor.</h3>
+        <p>Probably our strongest feature. A visitor asks a question at 9pm; the receptionist answers from your real pricing, hours, and programs — then captures the interested ones as leads.</p>
+        <div class="ex">Visitor: <span class="in">"How much is a membership?"</span>
+AI: <b>"Our adult memberships start at $149/month. Would you like to schedule a tour?"</b>
+Visitor: <span class="in">"Yes"</span>
+AI: <b>"Great — here's our booking link. What's the best email to reach you?"</b> → saved as a lead</div>
       </div>
       <div class="panel">
         <div class="lines lines--three">
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">VISIBILITY 01</div><div class="line__name">On-page optimization</div><div class="line__desc">Every page is structured the way search engines expect — titles, headings, and local details done right.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">VISIBILITY 02</div><div class="line__name">High-intent keyword targeting</div><div class="line__desc">We target the searches that mean someone's ready to buy — your services, your town, right now.</div></div>
-          </div>
-          <div class="line">
-            <span class="line__jack"></span>
-            <div><div class="line__code">VISIBILITY 03</div><div class="line__name">Fast loading speeds</div><div class="line__desc">Speed is part of how you rank. Every site is hand-coded and lean, so it loads fast on any phone.</div></div>
-          </div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">AI 01</div><div class="line__name">Answers like your best employee</div><div class="line__desc">FAQs, pricing, hours, services, policies — from a knowledge base you control, never invented.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">AI 02</div><div class="line__name">Sends people to book</div><div class="line__desc">Ready visitors get your real booking link instead of "call us during business hours."</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">AI 03</div><div class="line__name">Captures the lead</div><div class="line__desc">Name and contact info collected in the conversation, saved to your pipeline, and you're notified instantly.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgroup reveal">
+      <div class="pgroup__head">
+        <div class="line__code">MODULE 04 — AUTOMATED FOLLOW-UP ENGINE <span class="tag-live">Email live</span><span class="tag-soon">SMS coming soon</span></div>
+        <h3>This is where the money is.</h3>
+        <p>Most leads don't say no — they go quiet. The follow-up engine chases every one automatically so nobody slips away. It runs over email today; texting is pending carrier verification and rolls out to founding clubs first.</p>
+        <div class="ex">Immediately: <b>"Hey Sarah! Thanks for reaching out about pickleball lessons. Are you looking for beginner or intermediate classes?"</b>
+Day 2 (no reply): <b>"Just checking in! Happy to answer any questions."</b>
+Day 7: <b>"We have a beginner clinic opening next week if you're interested."</b></div>
+      </div>
+      <div class="panel">
+        <div class="lines lines--three">
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">FOLLOW 01</div><div class="line__name">Instant first touch</div><div class="line__desc">The moment a lead comes in, the first message goes out — while their interest is hottest.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">FOLLOW 02</div><div class="line__name">Day-2 and day-7 nudges</div><div class="line__desc">Quiet leads get a friendly check-in, then a last call — in your words, editable anytime.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">FOLLOW 03</div><div class="line__name">Win-backs for cancelled members</div><div class="line__desc">Members who cancel get a comeback sequence at 0, 30, and 60 days — recovered dues, on autopilot.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgroup reveal">
+      <div class="pgroup__head">
+        <div class="line__code">MODULE 05 — REVIEW GENERATION <span class="tag-live">Email live</span><span class="tag-soon">SMS coming soon</span></div>
+        <h3>Turn new members into 5-star reviews.</h3>
+        <p>The moment a lead becomes a member, they get a friendly ask with a one-tap link to your Google review page. Every member gets the same ask — consistent, automatic, compliant.</p>
+        <div class="ex"><b>"Hey Mike, hope you enjoyed your lesson today! Would you mind leaving us a quick Google review?"</b>
+[ ⭐ Leave Review ]</div>
+      </div>
+      <div class="panel">
+        <div class="lines lines--three">
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REVIEWS 01</div><div class="line__name">Automatic asks</div><div class="line__desc">Triggered the moment someone becomes a member — no chasing, no forgetting.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REVIEWS 02</div><div class="line__name">One-tap review links</div><div class="line__desc">One tap and they're on your Google review page. No hunting, no logins, no friction.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REVIEWS 03</div><div class="line__name">Climb the map pack</div><div class="line__desc">Steady reviews plus a fast site are what move you up Google's local results for "gym near me."</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgroup reveal">
+      <div class="pgroup__head">
+        <div class="line__code">MODULE 06 — MONTHLY ANALYTICS REPORT <span class="tag-live">Live</span></div>
+        <h3>Know exactly what grew this month.</h3>
+        <p>Generated automatically — visitors, leads, bookings, reviews, and your top lead source, with month-over-month change. The numbers that justify every dollar you spend on marketing.</p>
+        <div class="ex"><b>MONTHLY GROWTH REPORT</b>
+Website visitors: 2,400 <span class="in">(+18%)</span> · Leads: 134 <span class="in">(+32%)</span>
+Bookings: 57 <span class="in">(+21%)</span> · Reviews: 24 <span class="in">(+9)</span>
+Top lead source: Facebook Ads</div>
+      </div>
+      <div class="panel">
+        <div class="lines lines--three">
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REPORT 01</div><div class="line__name">Month over month</div><div class="line__desc">Every number comes with its trend, so you know instantly what's working.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REPORT 02</div><div class="line__name">Recovered revenue</div><div class="line__desc">Members who joined after the follow-up engine re-engaged them, counted in dollars per month.</div></div></div>
+          <div class="line"><span class="line__jack"></span><div><div class="line__code">REPORT 03</div><div class="line__name">Top lead source</div><div class="line__desc">See which channel actually fills memberships before you spend another ad dollar.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="auto__cta reveal">
-      <p>// plus every site can include an AI chat bubble that answers common questions — hours, services, pricing, booking.</p>
+      <p>// SMS texting — follow-ups, review requests, missed-call text-back — is pending carrier verification and rolls out to founding clubs first. Everything else is live today.</p>
     </div>
   </div>
 </section>

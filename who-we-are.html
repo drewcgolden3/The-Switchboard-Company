@@ -184,6 +184,14 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
 }
 @media(max-width:520px){.brand__txt span{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
+
+/* Switchboard OS nav dropdown */
+.nav__item{position:relative;display:flex;align-items:center}
+.nav__drop{position:absolute;top:100%;left:50%;transform:translate(-50%,6px);padding-top:10px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.nav__item:hover .nav__drop,.nav__item:focus-within .nav__drop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav__links .nav__drop a{display:block;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;white-space:nowrap;box-shadow:0 14px 34px -18px rgba(22,23,28,.4);color:var(--orange-deep);font-weight:600}
+.nav__links .nav__drop a::after{display:none}
+@media(max-width:820px){.nav__item{display:contents}.nav__drop{display:none}}
 </style>
 </head>
 <body>
@@ -199,8 +207,10 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
       <div class="nav__links">
         <a href="who-we-are.html" class="active">Who we are</a>
         <a href="websites.html">Websites</a>
-        <a href="ai-automation.html">Switchboard&nbsp;OS</a>
-        <a href="contact.html" style="color:var(--orange-deep);font-weight:600">Request&nbsp;a&nbsp;Demo</a>
+        <div class="nav__item">
+          <a href="ai-automation.html">Switchboard&nbsp;OS</a>
+          <div class="nav__drop"><a href="contact.html">Request a demo</a></div>
+        </div>
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav__cta">
@@ -259,15 +269,15 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
   <div class="wrap">
     <div class="reveal" style="max-width:60ch">
       <span class="eyebrow">A small change, a big difference</span>
-      <h2 class="head">One missed call is one lost customer.</h2>
-      <p class="lede">Modernizing doesn't mean a giant overhaul. It starts with a website that actually works — and the biggest wins after that are usually small, specific fixes that compound. Take the most common one: when a call goes to voicemail, most people don't leave a message — they just dial the next name on the list. One automation that texts that caller back the second you miss them turns a lost lead into a booked job. That's the kind of thing we're launching next, with a founding group of five local businesses.</p>
+      <h2 class="head">One unanswered question is one lost member.</h2>
+      <p class="lede">Modernizing doesn't mean a giant overhaul. It starts with a website that actually works — and the biggest wins after that are usually small, specific fixes that compound. Take the most common one: someone lands on your site at 9pm with a question about memberships. At most clubs that question dies right there. With Switchboard OS the AI receptionist answers it in seconds, captures the lead, and the follow-up engine keeps the conversation alive until they book a tour. That's live today for our founding clubs.</p>
     </div>
 
     <div class="compare">
       <div class="cpanel cpanel--off reveal">
         <div class="cpanel__tag">Without Switchboard</div>
         <ul>
-          <li><span class="cnode"></span><span>Call comes in during a rush → voicemail → they call your competitor.</span></li>
+          <li><span class="cnode"></span><span>A question comes in during a rush → nobody answers → they join the club down the road.</span></li>
           <li><span class="cnode"></span><span>A 9pm website inquiry sits unanswered until mid-morning.</span></li>
           <li><span class="cnode"></span><span>Happy customers leave — and are never asked for a review.</span></li>
           <li><span class="cnode"></span><span>Last year's customers are forgotten instead of re-engaged.</span></li>
@@ -276,7 +286,7 @@ h2.head{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:.5rem;letter-spacing:-.025
       <div class="cpanel cpanel--on reveal">
         <div class="cpanel__tag">With Switchboard OS — live now</div>
         <ul>
-          <li><span class="cnode"></span><span><b>Every missed call</b> gets an instant, friendly text back — the lead stays yours.</span></li>
+          <li><span class="cnode"></span><span><b>Every website question</b> gets an instant, friendly answer — any hour, and the lead stays yours.</span></li>
           <li><span class="cnode"></span><span><b>Inquiries get answered in seconds,</b> day or night, automatically.</span></li>
           <li><span class="cnode"></span><span><b>Reviews ask themselves</b> at the right moment, building your reputation on autopilot.</span></li>
           <li><span class="cnode"></span><span><b>Past customers get pulled back in</b> with smart, well-timed follow-ups.</span></li>
