@@ -477,22 +477,20 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
             </div>
           </div>
           <div class="field">
-            <label for="package">Which package are you interested in?</label>
+            <label for="package">What are you interested in?</label>
             <select id="package" name="package">
-              <option value="">No preference yet</option>
-              <option value="Starter">Starter — $850–1,000</option>
-              <option value="Growth">Growth — $1,250–1,750</option>
-              <option value="Complete">Complete — $2,250–4,000</option>
-              <option value="Maintenance">Maintenance or self-service kit only</option>
+              <option value="">Not sure yet</option>
+              <option value="Switchboard plan">The Switchboard plan — $0 up front, first month free, then $349/mo</option>
+              <option value="Custom project">A bigger custom project (new features, booking system from scratch)</option>
             </select>
           </div>
           <div class="field">
-            <label for="interest">What are you interested in?</label>
+            <label for="interest">What do you need most?</label>
             <select id="interest" name="interest">
               <option>A new website</option>
               <option>Redesign of my current site</option>
               <option>Website + ongoing support</option>
-              <option>Switchboard OS — founding club spot (live now)</option>
+              <option>A Switchboard OS demo</option>
               <option>Not sure yet — let's talk</option>
             </select>
           </div>
@@ -619,14 +617,15 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       .finally(function(){ btn.disabled = false; btn.style.opacity = 1; });
   });
 
-  // pre-select package from ?plan= (Starter / Growth / Complete)
+  // pre-select the plan from ?plan= (old starter/growth/complete links map to the plan too)
   (function(){
     var params = new URLSearchParams(window.location.search);
     var plan = (params.get('plan') || '').toLowerCase();
     var map = {
-      starter:  {label:'Starter',  pretty:'the Starter package'},
-      growth:   {label:'Growth',   pretty:'the Growth package'},
-      complete: {label:'Complete', pretty:'the Complete package'}
+      switchboard: {label:'Switchboard plan', pretty:'the Switchboard plan — $0 up front, first month free'},
+      starter:     {label:'Switchboard plan', pretty:'the Switchboard plan — $0 up front, first month free'},
+      growth:      {label:'Switchboard plan', pretty:'the Switchboard plan — $0 up front, first month free'},
+      complete:    {label:'Switchboard plan', pretty:'the Switchboard plan — $0 up front, first month free'}
     };
     if(map[plan]){
       var sel = document.getElementById('package');
