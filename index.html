@@ -186,126 +186,135 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 .hero__link:hover svg{transform:translateY(3px)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(235,109,45,.5)}50%{box-shadow:0 0 0 7px rgba(235,109,45,0)}}
 
-/* ---------- scroll story (pinned) ---------- */
-.story{position:relative;height:250vh}
+/* ---------- scroll story (pinned, scroll-scrubbed) ----------
+   JS eases one progress value toward the scroll position each frame and
+   publishes per-beat progress as custom properties (--in, --q, --t, --a, --lead,
+   --r1..--r3, --mem). Everything below is a function of those, so the scene
+   moves with the scroll instead of snapping between states, and runs backwards
+   when you scroll up. Only transform/opacity are animated. */
+.story{position:relative;height:300vh;
+  --in:0;--q:0;--t:0;--a:0;--lead:0;--r1:0;--r2:0;--r3:0;--mem:0;--p:0}
 .story__stage{
   position:sticky;top:74px;height:calc(100svh - 74px);min-height:560px;
-  display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,4.5vw,72px);align-items:center;
+  display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(32px,5vw,80px);align-items:center;
   max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
 }
-.story__copy{position:relative}
-.story__steps{position:relative;min-height:15rem}
-.sstep{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(16px);transition:opacity .2s ease-in,transform .2s ease-in;pointer-events:none}
-.story__stage[data-step="0"] .sstep:nth-child(1),
-.story__stage[data-step="1"] .sstep:nth-child(2),
-.story__stage[data-step="2"] .sstep:nth-child(3),
-.story__stage[data-step="3"] .sstep:nth-child(4){opacity:1;transform:none;pointer-events:auto;transition:opacity .5s var(--ease) .2s,transform .6s var(--ease) .2s}
-.sstep__n{font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--orange-deep)}
-.sstep h2{font-size:clamp(2rem,3.6vw,3.1rem);letter-spacing:-.035em;margin-top:.6rem;text-wrap:balance}
-.sstep p{color:var(--muted);font-size:clamp(1rem,1.3vw,1.1rem);margin-top:1rem;max-width:36ch}
-.story__bar{display:flex;gap:6px;margin-top:2rem;max-width:220px}
-.story__bar i{flex:1;height:3px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
-.story__bar i::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.story__stage[data-step="0"] .story__bar i:nth-child(-n+1)::after,
-.story__stage[data-step="1"] .story__bar i:nth-child(-n+2)::after,
-.story__stage[data-step="2"] .story__bar i:nth-child(-n+3)::after,
-.story__stage[data-step="3"] .story__bar i::after{transform:none}
 
-/* the browser + fictional club site */
-.story__visual{position:relative}
+/* left: the four beats as a list with a filling rail */
+.story__list{list-style:none;position:relative;padding-left:28px;display:flex;flex-direction:column;gap:clamp(18px,2.6vh,30px)}
+.story__list::before,.story__list::after{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:2px;border-radius:2px}
+.story__list::before{background:var(--line)}
+.story__list::after{background:var(--orange);transform-origin:top;transform:scaleY(var(--p))}
+.sbeat{position:relative;opacity:.38;transition:opacity .45s var(--ease)}
+.sbeat::before{content:"";position:absolute;left:-28px;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);transition:box-shadow .45s var(--ease),background .45s var(--ease);z-index:1}
+.sbeat.is-on{opacity:1}
+.sbeat.is-done::before,.sbeat.is-on::before{background:var(--orange);box-shadow:inset 0 0 0 2px var(--orange)}
+.sbeat__n{font-family:var(--display);font-weight:500;font-size:.85rem;color:var(--orange-deep)}
+.sbeat h2{font-size:clamp(1.35rem,2.2vw,1.9rem);letter-spacing:-.03em;margin-top:.15rem;line-height:1.1}
+.sbeat p{color:var(--muted);font-size:clamp(.92rem,1.1vw,1.02rem);line-height:1.55;margin-top:.4rem;max-width:38ch}
+
+/* right: the browser + example club site */
+.story__visual{position:relative;perspective:1600px}
 .browser{
   position:relative;border-radius:18px;background:#fff;border:1px solid var(--line);overflow:hidden;
   box-shadow:0 50px 100px -50px rgba(22,23,28,.45),0 18px 40px -30px rgba(22,23,28,.3);
   container-type:inline-size;
+  transform-origin:50% 100%;
+  transform:translateY(calc((1 - var(--in)) * 60px)) rotateX(calc((1 - var(--in)) * 14deg)) scale(calc(.94 + var(--in) * .06));
+  opacity:calc(.35 + var(--in) * .65);
 }
 .browser__bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:#F6F4EF}
 .browser__bar i{width:9px;height:9px;border-radius:50%;background:#DDD8CE}
 .browser__tag{margin-left:auto;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-deep);background:var(--orange-soft);border-radius:999px;padding:3px 10px}
 .browser__url{margin-left:12px;flex:1;max-width:50%;font-size:.72rem;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 12px;white-space:nowrap;overflow:hidden}
-.site{position:relative;aspect-ratio:16/10.4;background:#0F241D;color:#F3EEE3;overflow:hidden;transition:filter .6s var(--ease)}
+.site{position:relative;aspect-ratio:16/10.4;background:#0F241D;color:#F3EEE3;overflow:hidden;display:flex;flex-direction:column}
 .site__nav{display:flex;align-items:center;gap:3cqw;padding:2.4cqw 4cqw;font-size:1.25cqw;letter-spacing:.04em;color:rgba(243,238,227,.75)}
 .site__logo{font-family:var(--display);font-weight:700;font-size:1.6cqw;letter-spacing:.22em;color:#F3EEE3;margin-right:auto}
 .site__btn{background:#E9DFC8;color:#0F241D;border-radius:99px;padding:.7cqw 1.7cqw;font-weight:600}
-.site__hero{padding:5cqw 4cqw 0;max-width:60%}
+.site__hero{padding:4cqw 4cqw 0;max-width:58%;position:relative;z-index:1}
 .site__eyebrow{font-size:1.15cqw;letter-spacing:.24em;text-transform:uppercase;color:#C9B98F}
-.site__h{font-family:var(--display);font-weight:600;font-size:6.2cqw;line-height:.95;letter-spacing:-.04em;margin-top:1.6cqw}
+.site__h{font-family:var(--display);font-weight:600;font-size:6cqw;line-height:.95;letter-spacing:-.04em;margin-top:1.6cqw}
 .site__p{font-size:1.45cqw;line-height:1.55;color:rgba(243,238,227,.7);margin-top:2cqw;max-width:40ch}
 .site__ctas{display:flex;gap:1.2cqw;margin-top:2.6cqw;font-size:1.3cqw;font-weight:600}
 .site__ctas span{border-radius:99px;padding:1cqw 2.2cqw;background:#E9DFC8;color:#0F241D}
 .site__ctas span+span{background:transparent;color:#F3EEE3;box-shadow:inset 0 0 0 1px rgba(243,238,227,.35)}
 .site__court{ /* abstract clay court, top-down */
-  position:absolute;right:-3cqw;top:13cqw;width:33cqw;height:44cqw;border-radius:1.4cqw;
-  background:#B5563A;transform:rotate(-8deg);
-  box-shadow:inset 0 0 0 .5cqw #F1E6D6;
+  position:absolute;right:5cqw;top:9cqw;width:27cqw;height:36cqw;border-radius:1.2cqw;
+  background:linear-gradient(160deg,#C2603F,#A84C30);transform:rotate(-7deg);
+  box-shadow:inset 0 0 0 .45cqw #F1E6D6,0 3cqw 6cqw -2cqw rgba(0,0,0,.45);
 }
-.site__court::before{content:"";position:absolute;inset:6cqw 4cqw;box-shadow:inset 0 0 0 .35cqw #F1E6D6}
-.site__court::after{content:"";position:absolute;left:4cqw;right:4cqw;top:50%;height:.35cqw;background:#F1E6D6;box-shadow:0 0 0 .2cqw rgba(0,0,0,.08)}
-.site__dim{position:absolute;inset:0;background:rgba(10,14,12,.5);opacity:0;transition:opacity .6s var(--ease);pointer-events:none}
-.story__stage[data-step="2"] .site__dim,.story__stage[data-step="3"] .site__dim{opacity:1}
+.site__court::before{content:"";position:absolute;inset:5cqw 3.4cqw;box-shadow:inset 0 0 0 .3cqw #F1E6D6}
+.site__court::after{content:"";position:absolute;left:3.4cqw;right:3.4cqw;top:50%;height:.3cqw;background:#F1E6D6}
+.site__cards{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;padding:0 4cqw 3.4cqw;position:relative;z-index:1}
+.site__card{border-radius:1.2cqw;padding:1.6cqw 1.8cqw;background:rgba(243,238,227,.06);box-shadow:inset 0 0 0 1px rgba(243,238,227,.1)}
+.site__card b{display:block;font-family:var(--display);font-weight:600;font-size:1.6cqw}
+.site__card span{display:block;font-size:1.1cqw;color:rgba(243,238,227,.6);margin-top:.4cqw}
+.site__dim{position:absolute;inset:0;background:rgba(10,14,12,.55);opacity:var(--lead);pointer-events:none;z-index:2}
 
-/* step 2: the chat */
-.chat{position:absolute;right:3cqw;bottom:3cqw;width:min(290px,44cqw);display:flex;flex-direction:column;gap:8px;font-size:.8rem;line-height:1.45}
-.chat__msg{padding:.65rem .85rem;border-radius:14px;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--ease),transform .55s var(--ease)}
-.chat__msg--them{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:4px;max-width:85%}
-.chat__msg--us{align-self:flex-start;background:#F3EEE3;color:#0F241D;border-bottom-left-radius:4px;max-width:92%}
-.chat__time{font-size:.68rem;color:rgba(243,238,227,.6);align-self:flex-end;opacity:0;transition:opacity .45s var(--ease)}
-.story__stage:not([data-step="0"]) .chat__time,
-.story__stage:not([data-step="0"]) .chat__msg{opacity:1;transform:none}
-.story__stage:not([data-step="0"]) .chat__msg--us{transition-delay:.45s}
+/* beat 2: the chat */
+.chat{position:absolute;right:3cqw;bottom:3cqw;width:min(290px,44cqw);display:flex;flex-direction:column;gap:8px;font-size:.8rem;line-height:1.45;z-index:3;
+  opacity:calc(1 - var(--lead) * .6)}
+.chat__msg{padding:.65rem .85rem;border-radius:14px}
+.chat__msg--them{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:4px;max-width:85%;
+  opacity:var(--q);transform:translateY(calc((1 - var(--q)) * 14px)) scale(calc(.96 + var(--q) * .04));transform-origin:100% 100%}
+.chat__typing{align-self:flex-start;display:flex;gap:4px;padding:.7rem .85rem;border-radius:14px;border-bottom-left-radius:4px;background:#F3EEE3;
+  opacity:calc(var(--t) * (1 - var(--a)));transform:translateY(calc((1 - var(--t)) * 10px))}
+.chat__typing i{width:5px;height:5px;border-radius:50%;background:#0F241D;opacity:.45;animation:typing 1s infinite ease-in-out}
+.chat__typing i:nth-child(2){animation-delay:.15s}.chat__typing i:nth-child(3){animation-delay:.3s}
+@keyframes typing{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-3px);opacity:.8}}
+.chat__msg--us{align-self:flex-start;background:#F3EEE3;color:#0F241D;border-bottom-left-radius:4px;max-width:92%;
+  opacity:var(--a);transform:translateY(calc((1 - var(--a)) * 14px)) scale(calc(.96 + var(--a) * .04));transform-origin:0 100%}
+.chat__reply{display:grid;align-items:end}
+.chat__reply>*{grid-area:1/1;justify-self:start}
+.chat__time{font-size:.68rem;color:rgba(243,238,227,.6);align-self:flex-end;opacity:var(--q)}
 
-/* steps 3–4: the lead card */
+/* beats 3–4: the lead card */
 .lead{
-  position:absolute;left:clamp(-48px,-4vw,-16px);bottom:clamp(-36px,-3vw,-12px);width:min(340px,72%);
+  position:absolute;left:clamp(-48px,-4vw,-16px);bottom:clamp(-36px,-3vw,-12px);width:min(340px,72%);z-index:4;
   background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem 1.15rem;
   box-shadow:0 40px 80px -36px rgba(22,23,28,.5);
-  opacity:0;transform:translateY(28px) scale(.97);transition:opacity .5s var(--ease),transform .7s var(--ease);
+  opacity:var(--lead);transform:translateY(calc((1 - var(--lead)) * 48px)) scale(calc(.95 + var(--lead) * .05));
 }
-.story__stage[data-step="2"] .lead,.story__stage[data-step="3"] .lead{opacity:1;transform:none}
 .lead__top{display:flex;align-items:center;gap:.75rem}
 .lead__av{width:38px;height:38px;border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:.9rem;flex:none}
 .lead__name{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.2}
 .lead__sub{font-size:.8rem;color:var(--muted)}
-.lead__pill{margin-left:auto;position:relative;font-size:.72rem;font-weight:600;border-radius:99px;padding:.3em .75em;white-space:nowrap}
-.lead__pill span{transition:opacity .4s var(--ease)}
-.lead__pill .is-lead{color:var(--orange-deep)}
-.lead__pill .is-member{position:absolute;inset:0;display:grid;place-items:center;color:#1E6B45;opacity:0}
-.lead__pill{background:var(--orange-soft);transition:background .4s var(--ease)}
-.story__stage[data-step="3"] .lead__pill{background:#DDF1E5}
-.story__stage[data-step="3"] .lead__pill .is-lead{opacity:0}
-.story__stage[data-step="3"] .lead__pill .is-member{opacity:1}
+.lead__pill{margin-left:auto;display:grid;font-size:.72rem;font-weight:600;white-space:nowrap}
+.lead__pill span{grid-area:1/1;border-radius:99px;padding:.3em .75em;text-align:center}
+.lead__pill .is-lead{background:var(--orange-soft);color:var(--orange-deep);opacity:calc(1 - var(--mem))}
+.lead__pill .is-member{background:#DDF1E5;color:#1E6B45;opacity:var(--mem);transform:scale(calc(.85 + var(--mem) * .15))}
 .lead__rows{list-style:none;margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.55rem;font-size:.84rem}
 .lead__rows li{display:flex;align-items:center;gap:.6rem;color:var(--ink)}
 .lead__rows li small{margin-left:auto;color:var(--muted);font-size:.74rem}
-.lead__rows li i{width:16px;height:16px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--orange);color:#fff}
-.lead__rows li i svg{width:10px;height:10px}
-.lead__rows li.later{opacity:.32;transition:opacity .45s var(--ease)}
-.lead__rows li.later i{background:var(--line);transition:background .45s var(--ease)}
-.lead__rows li.later i svg{opacity:0;transition:opacity .3s}
-.story__stage[data-step="3"] .lead__rows li.later{opacity:1}
-.story__stage[data-step="3"] .lead__rows li.later i{background:var(--orange)}
-.story__stage[data-step="3"] .lead__rows li.later i svg{opacity:1}
-.story__stage[data-step="3"] .lead__rows li.later:nth-child(3){transition-delay:.18s}
-.story__stage[data-step="3"] .lead__rows li.later:nth-child(4){transition-delay:.36s}
-.story__stage[data-step="3"] .lead__rows li.join i{background:#1E6B45}
-.story__stage[data-step="3"] .lead__rows li.later:nth-child(3) i,.story__stage[data-step="3"] .lead__rows li.later:nth-child(3) i svg{transition-delay:.18s}
-.story__stage[data-step="3"] .lead__rows li.later:nth-child(4) i,.story__stage[data-step="3"] .lead__rows li.later:nth-child(4) i svg{transition-delay:.36s}
-.chat{transition:opacity .6s var(--ease)}
-.story__stage[data-step="2"] .chat,.story__stage[data-step="3"] .chat{opacity:.4}
+.lead__rows li i{position:relative;width:16px;height:16px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--line);color:#fff}
+.lead__rows li i::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--orange);opacity:var(--r,1);transform:scale(calc(.4 + var(--r,1) * .6))}
+.lead__rows li i svg{position:relative;width:10px;height:10px;opacity:var(--r,1)}
+.lead__rows li.r1{--r:var(--r1)}.lead__rows li.r2{--r:var(--r2)}.lead__rows li.r3{--r:var(--r3)}
+.lead__rows li.r1,.lead__rows li.r2,.lead__rows li.r3{opacity:calc(.35 + var(--r) * .65)}
+.lead__rows li.r3 i::before{background:#1E6B45}
 
 @media(max-width:900px){
-  .story{height:230vh}
-  .story__stage{grid-template-columns:1fr;align-content:center;gap:24px;min-height:0}
-  .story__steps{min-height:12.5rem}
-  .sstep h2{font-size:clamp(1.6rem,6.4vw,2.2rem)}
-  .sstep p{font-size:.95rem;margin-top:.6rem}
-  .story__bar{margin-top:1rem}
+  .story{height:280vh}
+  .story__stage{grid-template-columns:1fr;align-content:center;gap:26px;min-height:0}
+  .story__list{padding-left:0;display:grid}
+  .story__list::before,.story__list::after{display:none}
+  .sbeat{grid-area:1/1;opacity:0;transform:translateY(10px);transition:opacity .35s var(--ease),transform .45s var(--ease)}
+  .sbeat::before{display:none}
+  .sbeat.is-on{opacity:1;transform:none}
+  .sbeat h2{font-size:clamp(1.5rem,6.2vw,2rem)}
+  .story__dots{display:flex!important}
   .lead{left:12px;bottom:-22px;width:min(320px,calc(100% - 24px))}
   .chat{font-size:.68rem;width:62cqw;gap:6px}
   .chat__msg{padding:.5rem .7rem}
   .chat__time{display:none}
   .site__hero{max-width:72%}
+  .site__court{right:-6cqw;opacity:.85}
 }
-@media(max-height:640px) and (max-width:900px){.sstep p{display:none}.story__steps{min-height:6rem}}
+.story__dots{display:none;gap:6px;margin-top:18px}
+.story__dots i{flex:1;max-width:44px;height:3px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
+.story__dots i::after{content:"";position:absolute;inset:0;background:var(--orange);transform-origin:left;transform:scaleX(var(--f,0))}
+@media(max-height:640px) and (max-width:900px){.sbeat p{display:none}}
+
 
 /* ---------- section header block ---------- */
 .shead{max-width:64ch}
@@ -568,31 +577,31 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 
 <!-- ===================== SCROLL STORY ===================== -->
 <section class="story" id="story" aria-label="How a visitor becomes a member">
-  <div class="story__stage" data-step="0">
+  <div class="story__stage">
     <div class="story__copy">
-      <div class="story__steps">
-        <div class="sstep">
-          <div class="sstep__n">01</div>
+      <ol class="story__list">
+        <li class="sbeat is-on">
+          <div class="sbeat__n">01</div>
           <h2>It starts with a site worth visiting.</h2>
-          <p>Designed from scratch for your club — fast, beautiful on a phone, and built to get people through the door.</p>
-        </div>
-        <div class="sstep">
-          <div class="sstep__n">02</div>
+          <p>Designed from scratch for your club — fast, beautiful on a phone, built to get people through the door.</p>
+        </li>
+        <li class="sbeat">
+          <div class="sbeat__n">02</div>
           <h2>A visitor asks a question at 9:47&nbsp;pm.</h2>
           <p>Switchboard answers on the spot — hours, pricing, memberships — long after the front desk has gone home.</p>
-        </div>
-        <div class="sstep">
-          <div class="sstep__n">03</div>
+        </li>
+        <li class="sbeat">
+          <div class="sbeat__n">03</div>
           <h2>They become a lead. Automatically.</h2>
           <p>Name, interest and the whole conversation land in your dashboard. Nothing slips through the cracks.</p>
-        </div>
-        <div class="sstep">
-          <div class="sstep__n">04</div>
+        </li>
+        <li class="sbeat">
+          <div class="sbeat__n">04</div>
           <h2>Then a member.</h2>
           <p>Switchboard follows up until they book a tour and join. You just say hello at the front desk.</p>
-        </div>
-      </div>
-      <div class="story__bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </li>
+      </ol>
+      <div class="story__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
 
     <div class="story__visual" aria-hidden="true">
@@ -607,11 +616,19 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
             <div class="site__p">Courts, pool and classes for the whole family — your club, your story, built from scratch.</div>
             <div class="site__ctas"><span>Book a free tour</span><span>Memberships</span></div>
           </div>
+          <div class="site__cards">
+            <div class="site__card"><b>Courts</b><span>Book online, 6am–10pm</span></div>
+            <div class="site__card"><b>Pool</b><span>Lap swim &amp; lessons</span></div>
+            <div class="site__card"><b>Classes</b><span>40+ a week</span></div>
+          </div>
           <div class="site__dim"></div>
           <div class="chat">
             <span class="chat__time">9:47 PM</span>
             <div class="chat__msg chat__msg--them">Do you have a family membership?</div>
-            <div class="chat__msg chat__msg--us">We do — it covers two adults and kids under 18, with full court and pool access. Want to book a free tour this weekend?</div>
+            <div class="chat__reply">
+              <div class="chat__typing"><i></i><i></i><i></i></div>
+              <div class="chat__msg chat__msg--us">We do — it covers two adults and kids under 18, with full court and pool access. Want to book a free tour this weekend?</div>
+            </div>
           </div>
         </div>
       </div>
@@ -624,9 +641,9 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
         </div>
         <ul class="lead__rows">
           <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Asked about family plans<small>9:47 PM</small></li>
-          <li class="later"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Follow-up email sent<small>Day 2</small></li>
-          <li class="later"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Tour booked<small>Sat 10:00</small></li>
-          <li class="later join"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Joined — family plan<small>Sat</small></li>
+          <li class="r1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Follow-up email sent<small>Day 2</small></li>
+          <li class="r2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Tour booked<small>Sat 10:00</small></li>
+          <li class="r3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Joined — family plan<small>Sat</small></li>
         </ul>
       </div>
     </div>
@@ -954,20 +971,59 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
     },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
     els.forEach(function(el){io.observe(el)});
   }
-  // pinned scroll story: step follows scroll position
-  var story=document.querySelector('.story'), stage=story&&story.querySelector('.story__stage');
-  if(stage){
-    var cur=-1, ticking=false;
-    var update=function(){
-      ticking=false;
+  // pinned scroll story: an eased progress value follows the scroll position,
+  // and each beat of the scene gets its own 0..1 slice of it as a CSS variable
+  var story=document.querySelector('.story');
+  if(story){
+    var stage=story.querySelector('.story__stage');
+    var beats=story.querySelectorAll('.sbeat'), dots=story.querySelectorAll('.story__dots i');
+    var reducedStory=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target=0, cur=0, running=false, active=-1;
+    var clamp=function(v){return v<0?0:v>1?1:v};
+    var ease=function(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+    var seg=function(p,a,b){return ease(clamp((p-a)/(b-a)))};
+    // where each beat lives on the 0..1 scroll track
+    var BEATS=[0,.24,.5,.76];
+    var measure=function(){
       var r=story.getBoundingClientRect(), run=r.height-stage.offsetHeight;
-      var p=run>0?Math.min(1,Math.max(0,(74-r.top)/run)):0;
-      var step=Math.min(3,Math.floor(p*4.2));
-      if(step!==cur){cur=step;stage.setAttribute('data-step',step)}
+      target=run>0?clamp((74-r.top)/run):0;
+      // the browser settles in as the section arrives, before pinning starts
+      return clamp(1-(r.top-74)/(window.innerHeight*.6));
     };
-    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
-    window.addEventListener('resize',update);
-    update();
+    var paint=function(p,arrive){
+      var st=story.style;
+      st.setProperty('--p',p.toFixed(4));
+      st.setProperty('--in',ease(arrive).toFixed(4));
+      st.setProperty('--q',seg(p,.2,.3).toFixed(4));
+      st.setProperty('--t',seg(p,.28,.33).toFixed(4));
+      st.setProperty('--a',seg(p,.36,.46).toFixed(4));
+      st.setProperty('--lead',seg(p,.5,.62).toFixed(4));
+      st.setProperty('--r1',seg(p,.68,.74).toFixed(4));
+      st.setProperty('--r2',seg(p,.76,.82).toFixed(4));
+      st.setProperty('--r3',seg(p,.84,.9).toFixed(4));
+      st.setProperty('--mem',seg(p,.88,.94).toFixed(4));
+      var n=0; for(var i=0;i<BEATS.length;i++){ if(p>=BEATS[i]-.02) n=i; }
+      if(n!==active){
+        active=n;
+        beats.forEach(function(b,i){b.classList.toggle('is-on',i===n);b.classList.toggle('is-done',i<n)});
+      }
+      dots.forEach(function(d,i){
+        var end=i<3?BEATS[i+1]:1;
+        d.style.setProperty('--f',clamp((p-BEATS[i])/(end-BEATS[i])).toFixed(3));
+      });
+    };
+    var arrive=0;
+    var tick=function(){
+      arrive=measure();
+      cur+= reducedStory ? (target-cur) : (target-cur)*.14;
+      if(Math.abs(target-cur)<.0005) cur=target;
+      paint(cur,arrive);
+      if(cur!==target){ requestAnimationFrame(tick); } else { running=false; }
+    };
+    var kick=function(){ if(!running){ running=true; requestAnimationFrame(tick); } };
+    window.addEventListener('scroll',kick,{passive:true});
+    window.addEventListener('resize',kick);
+    arrive=measure(); cur=target; paint(cur,arrive);
   }
 })();
 </script>
