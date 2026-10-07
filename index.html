@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Switchboard Company — Websites & Growth Software for Gyms, Clubs & Studios</title>
-<meta name="description" content="The Switchboard Company builds custom websites for gyms, fitness centers, sports clubs, tennis clubs and studios — no templates, no page builders, no bloat. Home of Switchboard OS — the growth dashboard for clubs, live now with a 90-day free trial." />
+<meta name="description" content="The Switchboard Company builds custom websites for gyms, fitness centers, sports clubs, tennis clubs and studios — no templates, no page builders, no bloat. Home of Switchboard OS. $0 up front, first month free, then $349/mo." />
 <meta name="theme-color" content="#EB6D2D" />
 
 <!-- Open Graph -->
@@ -160,86 +160,141 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 .nav__links .nav__drop a{display:block;background:var(--ink-2);border:1px solid var(--line-dark);border-radius:10px;padding:.55rem 1rem;font-size:.85rem;white-space:nowrap;box-shadow:0 14px 34px -18px rgba(0,0,0,.6);color:var(--orange);font-weight:600}
 .nav__links .nav__drop a::after{display:none}
 
-/* ---------- hero (dark) ---------- */
-.hero{
-  position:relative;background:var(--ink);color:#EDECEA;
-  padding-block:clamp(64px,9vw,120px) clamp(70px,9vw,124px);
-  overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(52% 46% at 78% 18%,rgba(235,109,45,.14),transparent 70%),
-    radial-gradient(40% 34% at 12% 88%,rgba(235,109,45,.07),transparent 70%);
-}
-.hero__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(36px,5vw,76px);align-items:center;position:relative}
+/* ---------- hero (light, offer-led) ---------- */
+.hero{position:relative;padding-block:clamp(72px,11vw,150px) clamp(48px,6vw,80px);text-align:center}
+.hero__kicker{font-size:.98rem;color:var(--muted);font-weight:500}
 .hero h1{
-  font-size:clamp(2.7rem,6.4vw,5rem);
-  font-weight:600;margin-top:1.2rem;letter-spacing:-.035em;color:#fff;
+  font-size:clamp(2.9rem,7.6vw,6.6rem);font-weight:600;letter-spacing:-.045em;line-height:.98;
+  max-width:12.5ch;margin:1.1rem auto 0;text-wrap:balance;
 }
-.hero h1 .accent{color:var(--orange)}
-.hero p.lede{margin-top:1.5rem;max-width:46ch;color:var(--muted-dark)}
-.hero__cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.2rem}
-.hero__note{margin-top:1.8rem;font-family:var(--mono);font-size:.74rem;color:#8A8C96;letter-spacing:.02em;display:flex;align-items:center;gap:.6em}
-.hero__note .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(235,109,45,.18);animation:pulse 2.2s ease-in-out infinite}
-
-/* hero dashboard mock */
-.hero__visual{position:relative}
-.hero__visual::before{ /* faint switchboard traces behind the card */
-  content:"";position:absolute;inset:-12% -10%;
-  background:
-    radial-gradient(circle 5px at 4% 24%,rgba(235,109,45,.5) 40%,transparent 41%),
-    radial-gradient(circle 5px at 4% 55%,rgba(235,109,45,.5) 40%,transparent 41%),
-    radial-gradient(circle 5px at 4% 86%,rgba(235,109,45,.5) 40%,transparent 41%);
-  border-left:1px solid var(--line-dark);
-  opacity:.5;pointer-events:none;
-}
-.mock{
-  position:relative;border:1px solid var(--line-dark);border-radius:var(--r-lg);
-  background:linear-gradient(180deg,#1D1F27,#16171D);
-  box-shadow:0 40px 90px -40px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.02) inset;
-  overflow:hidden;
-}
-.mock__bar{
-  display:flex;align-items:center;gap:.6rem;padding:.85rem 1.25rem;
-  border-bottom:1px solid var(--line-dark);
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:#8A8C96;text-transform:uppercase;
-}
-.mock__bar i{width:9px;height:9px;border-radius:50%;background:#3a3d47;display:inline-block}
-.mock__bar i.live{background:var(--orange);box-shadow:0 0 0 3px rgba(235,109,45,.18)}
-.mock__bar span{margin-left:auto;text-transform:none;letter-spacing:.04em}
-.mock__stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line-dark)}
-.mstat{padding:1.05rem 1.25rem}
-.mstat:not(:last-child){border-right:1px solid var(--line-dark)}
-.mstat__k{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:#74767F}
-.mstat__v{font-family:var(--display);font-weight:600;font-size:1.45rem;color:#fff;margin-top:.2rem;letter-spacing:-.02em}
-.mstat__v small{font-size:.72rem;color:var(--orange);font-family:var(--mono);font-weight:400;margin-left:.35em;letter-spacing:0}
-.mock__feed{padding:.4rem 0 .6rem}
-.mrow{display:flex;gap:.85rem;padding:.78rem 1.25rem;align-items:flex-start}
-.mrow+.mrow{border-top:1px solid rgba(255,255,255,.05)}
-.mrow__jack{flex:none;width:12px;height:12px;border-radius:50%;border:2px solid var(--orange);margin-top:.32rem;position:relative}
-.mrow__jack::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--orange);opacity:.85}
-.mrow__jack--dim{border-color:#4A4D58}
-.mrow__jack--dim::after{background:#4A4D58}
-.mrow__txt{font-size:.84rem;color:#C6C8CF;line-height:1.5}
-.mrow__txt b{color:#fff;font-weight:600}
-.mrow__time{margin-left:auto;flex:none;font-family:var(--mono);font-size:.64rem;color:#74767F;letter-spacing:.04em;margin-top:.3rem}
-.mock__foot{
-  padding:.8rem 1.25rem;border-top:1px solid var(--line-dark);
-  font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:#8A8C96;text-transform:uppercase;
-  display:flex;align-items:center;gap:.6em;
-}
-.mock__foot i{width:7px;height:7px;border-radius:50%;background:var(--orange);animation:pulse 2.2s ease-in-out infinite}
+.hero h1 .accent{display:block;color:var(--orange);margin-top:.08em}
+.hero .lede{margin:1.7rem auto 0;max-width:44ch;text-wrap:pretty}
+.hero__cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem 1.8rem;margin-top:2.4rem}
+.hero__link{font-family:var(--display);font-weight:500;color:var(--ink);display:inline-flex;align-items:center;gap:.45em;padding:.6em .2em;border-bottom:1.5px solid var(--line);transition:border-color var(--t-fast)}
+.hero__link:hover{border-color:var(--ink)}
+.hero__link svg{width:1em;height:1em;transition:transform var(--t-fast)}
+.hero__link:hover svg{transform:translateY(3px)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(235,109,45,.5)}50%{box-shadow:0 0 0 7px rgba(235,109,45,0)}}
 
-/* ---------- stats strip ---------- */
-.strip{border-bottom:1px solid var(--line);background:var(--paper)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:clamp(1.6rem,3vw,2.4rem) 1.4rem;text-align:center;position:relative}
-.stat:not(:last-child)::after{content:"";position:absolute;right:0;top:22%;bottom:22%;width:1px;background:var(--line)}
-.stat__v{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.7rem);letter-spacing:-.03em;color:var(--ink)}
-.stat__v em{font-style:normal;color:var(--orange)}
-.stat__k{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+/* ---------- scroll story (pinned) ---------- */
+.story{position:relative;height:440vh}
+.story__stage{
+  position:sticky;top:74px;height:calc(100svh - 74px);min-height:560px;
+  display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,4.5vw,72px);align-items:center;
+  max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);
+}
+.story__copy{position:relative}
+.story__steps{position:relative;min-height:15rem}
+.sstep{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(16px);transition:opacity .2s ease-in,transform .2s ease-in;pointer-events:none}
+.story__stage[data-step="0"] .sstep:nth-child(1),
+.story__stage[data-step="1"] .sstep:nth-child(2),
+.story__stage[data-step="2"] .sstep:nth-child(3),
+.story__stage[data-step="3"] .sstep:nth-child(4){opacity:1;transform:none;pointer-events:auto;transition:opacity .5s var(--ease) .2s,transform .6s var(--ease) .2s}
+.sstep__n{font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--orange-deep)}
+.sstep h2{font-size:clamp(2rem,3.6vw,3.1rem);letter-spacing:-.035em;margin-top:.6rem;text-wrap:balance}
+.sstep p{color:var(--muted);font-size:clamp(1rem,1.3vw,1.1rem);margin-top:1rem;max-width:36ch}
+.story__bar{display:flex;gap:6px;margin-top:2rem;max-width:220px}
+.story__bar i{flex:1;height:3px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
+.story__bar i::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.story__stage[data-step="0"] .story__bar i:nth-child(-n+1)::after,
+.story__stage[data-step="1"] .story__bar i:nth-child(-n+2)::after,
+.story__stage[data-step="2"] .story__bar i:nth-child(-n+3)::after,
+.story__stage[data-step="3"] .story__bar i::after{transform:none}
+
+/* the browser + fictional club site */
+.story__visual{position:relative}
+.browser{
+  position:relative;border-radius:18px;background:#fff;border:1px solid var(--line);overflow:hidden;
+  box-shadow:0 50px 100px -50px rgba(22,23,28,.45),0 18px 40px -30px rgba(22,23,28,.3);
+  container-type:inline-size;
+}
+.browser__bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:#F6F4EF}
+.browser__bar i{width:9px;height:9px;border-radius:50%;background:#DDD8CE}
+.browser__url{margin-left:12px;flex:1;max-width:50%;font-size:.72rem;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 12px;white-space:nowrap;overflow:hidden}
+.site{position:relative;aspect-ratio:16/10.4;background:#0F241D;color:#F3EEE3;overflow:hidden;transition:filter .6s var(--ease)}
+.site__nav{display:flex;align-items:center;gap:3cqw;padding:2.4cqw 4cqw;font-size:1.25cqw;letter-spacing:.04em;color:rgba(243,238,227,.75)}
+.site__logo{font-family:var(--display);font-weight:700;font-size:1.6cqw;letter-spacing:.22em;color:#F3EEE3;margin-right:auto}
+.site__btn{background:#E9DFC8;color:#0F241D;border-radius:99px;padding:.7cqw 1.7cqw;font-weight:600}
+.site__hero{padding:5cqw 4cqw 0;max-width:60%}
+.site__eyebrow{font-size:1.15cqw;letter-spacing:.24em;text-transform:uppercase;color:#C9B98F}
+.site__h{font-family:var(--display);font-weight:600;font-size:6.2cqw;line-height:.95;letter-spacing:-.04em;margin-top:1.6cqw}
+.site__p{font-size:1.45cqw;line-height:1.55;color:rgba(243,238,227,.7);margin-top:2cqw;max-width:40ch}
+.site__ctas{display:flex;gap:1.2cqw;margin-top:2.6cqw;font-size:1.3cqw;font-weight:600}
+.site__ctas span{border-radius:99px;padding:1cqw 2.2cqw;background:#E9DFC8;color:#0F241D}
+.site__ctas span+span{background:transparent;color:#F3EEE3;box-shadow:inset 0 0 0 1px rgba(243,238,227,.35)}
+.site__court{ /* abstract clay court, top-down */
+  position:absolute;right:-3cqw;top:13cqw;width:33cqw;height:44cqw;border-radius:1.4cqw;
+  background:#B5563A;transform:rotate(-8deg);
+  box-shadow:inset 0 0 0 .5cqw #F1E6D6;
+}
+.site__court::before{content:"";position:absolute;inset:6cqw 4cqw;box-shadow:inset 0 0 0 .35cqw #F1E6D6}
+.site__court::after{content:"";position:absolute;left:4cqw;right:4cqw;top:50%;height:.35cqw;background:#F1E6D6;box-shadow:0 0 0 .2cqw rgba(0,0,0,.08)}
+.site__dim{position:absolute;inset:0;background:rgba(10,14,12,.5);opacity:0;transition:opacity .6s var(--ease);pointer-events:none}
+.story__stage[data-step="2"] .site__dim,.story__stage[data-step="3"] .site__dim{opacity:1}
+
+/* step 2: the chat */
+.chat{position:absolute;right:3cqw;bottom:3cqw;width:min(290px,44cqw);display:flex;flex-direction:column;gap:8px;font-size:.8rem;line-height:1.45}
+.chat__msg{padding:.65rem .85rem;border-radius:14px;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--ease),transform .55s var(--ease)}
+.chat__msg--them{align-self:flex-end;background:#fff;color:var(--ink);border-bottom-right-radius:4px;max-width:85%}
+.chat__msg--us{align-self:flex-start;background:#F3EEE3;color:#0F241D;border-bottom-left-radius:4px;max-width:92%}
+.chat__time{font-size:.68rem;color:rgba(243,238,227,.6);align-self:flex-end;opacity:0;transition:opacity .45s var(--ease)}
+.story__stage:not([data-step="0"]) .chat__time,
+.story__stage:not([data-step="0"]) .chat__msg{opacity:1;transform:none}
+.story__stage:not([data-step="0"]) .chat__msg--us{transition-delay:.45s}
+
+/* steps 3–4: the lead card */
+.lead{
+  position:absolute;left:clamp(-48px,-4vw,-16px);bottom:clamp(-36px,-3vw,-12px);width:min(340px,72%);
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem 1.15rem;
+  box-shadow:0 40px 80px -36px rgba(22,23,28,.5);
+  opacity:0;transform:translateY(28px) scale(.97);transition:opacity .5s var(--ease),transform .7s var(--ease);
+}
+.story__stage[data-step="2"] .lead,.story__stage[data-step="3"] .lead{opacity:1;transform:none}
+.lead__top{display:flex;align-items:center;gap:.75rem}
+.lead__av{width:38px;height:38px;border-radius:50%;background:var(--orange-soft);color:var(--orange-deep);display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:.9rem;flex:none}
+.lead__name{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.2}
+.lead__sub{font-size:.8rem;color:var(--muted)}
+.lead__pill{margin-left:auto;position:relative;font-size:.72rem;font-weight:600;border-radius:99px;padding:.3em .75em;white-space:nowrap}
+.lead__pill span{transition:opacity .4s var(--ease)}
+.lead__pill .is-lead{color:var(--orange-deep)}
+.lead__pill .is-member{position:absolute;inset:0;display:grid;place-items:center;color:#1E6B45;opacity:0}
+.lead__pill{background:var(--orange-soft);transition:background .4s var(--ease)}
+.story__stage[data-step="3"] .lead__pill{background:#DDF1E5}
+.story__stage[data-step="3"] .lead__pill .is-lead{opacity:0}
+.story__stage[data-step="3"] .lead__pill .is-member{opacity:1}
+.lead__rows{list-style:none;margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.55rem;font-size:.84rem}
+.lead__rows li{display:flex;align-items:center;gap:.6rem;color:var(--ink)}
+.lead__rows li small{margin-left:auto;color:var(--muted);font-size:.74rem}
+.lead__rows li i{width:16px;height:16px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--orange);color:#fff}
+.lead__rows li i svg{width:10px;height:10px}
+.lead__rows li.later{opacity:.32;transition:opacity .45s var(--ease)}
+.lead__rows li.later i{background:var(--line);transition:background .45s var(--ease)}
+.lead__rows li.later i svg{opacity:0;transition:opacity .3s}
+.story__stage[data-step="3"] .lead__rows li.later{opacity:1}
+.story__stage[data-step="3"] .lead__rows li.later i{background:var(--orange)}
+.story__stage[data-step="3"] .lead__rows li.later i svg{opacity:1}
+.story__stage[data-step="3"] .lead__rows li.later:nth-child(3){transition-delay:.18s}
+.story__stage[data-step="3"] .lead__rows li.later:nth-child(4){transition-delay:.36s}
+.story__stage[data-step="3"] .lead__rows li.join i{background:#1E6B45}
+.story__stage[data-step="3"] .lead__rows li.later:nth-child(3) i,.story__stage[data-step="3"] .lead__rows li.later:nth-child(3) i svg{transition-delay:.18s}
+.story__stage[data-step="3"] .lead__rows li.later:nth-child(4) i,.story__stage[data-step="3"] .lead__rows li.later:nth-child(4) i svg{transition-delay:.36s}
+.chat{transition:opacity .6s var(--ease)}
+.story__stage[data-step="2"] .chat,.story__stage[data-step="3"] .chat{opacity:.4}
+
+@media(max-width:900px){
+  .story{height:400vh}
+  .story__stage{grid-template-columns:1fr;align-content:center;gap:24px;min-height:0}
+  .story__steps{min-height:12.5rem}
+  .sstep h2{font-size:clamp(1.6rem,6.4vw,2.2rem)}
+  .sstep p{font-size:.95rem;margin-top:.6rem}
+  .story__bar{margin-top:1rem}
+  .lead{left:12px;bottom:-22px;width:min(320px,calc(100% - 24px))}
+  .chat{font-size:.68rem;width:62cqw;gap:6px}
+  .chat__msg{padding:.5rem .7rem}
+  .chat__time{display:none}
+  .site__hero{max-width:72%}
+}
+@media(max-height:640px) and (max-width:900px){.sstep p{display:none}.story__steps{min-height:6rem}}
 
 /* ---------- section header block ---------- */
 .shead{max-width:64ch}
@@ -408,8 +463,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 
 /* ---------- responsive ---------- */
 @media(max-width:1020px){
-  .hero__grid{grid-template-columns:1fr;gap:52px}
-  .hero__visual{max-width:560px}
   .os__top{grid-template-columns:1fr}
   .mods{grid-template-columns:1fr 1fr}
   .loop__row{grid-template-columns:1fr 1fr 1fr}
@@ -429,9 +482,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
   .nav.open .nav__cta .btn{display:inline-flex;margin-top:1rem}
   .nav__item{display:contents}
   .nav__drop{display:none}
-  .stats{grid-template-columns:1fr 1fr}
-  .stat:nth-child(2)::after{display:none}
-  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .steps{grid-template-columns:1fr 1fr;gap:2rem 1.4rem}
   .step{border-right:0;padding:0}
   .step__line{display:none}
@@ -446,9 +496,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
   .lstep:not(:last-child){border-right:0}
   .steps{grid-template-columns:1fr}
   .brand__txt span{display:none}
-  .mock__stats{grid-template-columns:1fr 1fr}
-  .mstat:nth-child(3){display:none}
-  .mrow__time{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
@@ -486,69 +533,86 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero__grid">
-      <div class="hero__copy reveal">
-        <span class="eyebrow">Websites + Switchboard OS · for gyms, clubs &amp; studios</span>
-        <h1>Your website brings them&nbsp;in. <span class="accent">Switchboard signs them&nbsp;up.</span></h1>
-        <p class="lede">Custom websites for gyms, sports clubs, tennis clubs and studios — connected to Switchboard OS, the growth dashboard that answers every visitor 24/7, follows up with every lead, wins back cancelled members, and turns happy ones into 5-star reviews.</p>
-        <div class="hero__cta">
-          <a href="contact.html" class="btn btn--primary">Request a demo
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="websites.html" class="btn btn--ghost">Websites: plans &amp; pricing</a>
-        </div>
-        <div class="hero__note"><span class="dot"></span> Switchboard OS is live · 90-day free trial · 10 founding spots at $349/mo</div>
-      </div>
-
-      <!-- Switchboard OS dashboard mock -->
-      <div class="hero__visual reveal">
-        <div class="mock" role="img" aria-label="Preview of the Switchboard OS dashboard: this week's leads, review rating and win-backs, plus a live activity feed of answered enquiries, follow-ups and review requests.">
-          <div class="mock__bar"><i class="live"></i><i></i><i></i> Switchboard OS <span>harborview athletic club</span></div>
-          <div class="mock__stats">
-            <div class="mstat"><div class="mstat__k">Leads · this week</div><div class="mstat__v">14<small>+5</small></div></div>
-            <div class="mstat"><div class="mstat__k">Google rating</div><div class="mstat__v">4.9<small>★ 62</small></div></div>
-            <div class="mstat"><div class="mstat__k">Win-backs</div><div class="mstat__v">3<small>this mo</small></div></div>
-          </div>
-          <div class="mock__feed">
-            <div class="mrow">
-              <span class="mrow__jack"></span>
-              <div class="mrow__txt"><b>AI receptionist</b> answered a membership question and captured the visitor as a lead.</div>
-              <span class="mrow__time">2:14 AM</span>
-            </div>
-            <div class="mrow">
-              <span class="mrow__jack"></span>
-              <div class="mrow__txt"><b>Follow-up engine</b> sent Sarah M. her day-two email — pickleball intro session.</div>
-              <span class="mrow__time">9:00 AM</span>
-            </div>
-            <div class="mrow">
-              <span class="mrow__jack"></span>
-              <div class="mrow__txt"><b>Review request</b> emailed to Mike R. after sign-up — one-tap Google link.</div>
-              <span class="mrow__time">11:32 AM</span>
-            </div>
-            <div class="mrow">
-              <span class="mrow__jack mrow__jack--dim"></span>
-              <div class="mrow__txt"><b>Win-back</b> queued for a member who cancelled 60 days ago.</div>
-              <span class="mrow__time">4:05 PM</span>
-            </div>
-          </div>
-          <div class="mock__foot"><i></i> live · answering while you coach, teach or sleep</div>
-        </div>
-      </div>
+    <p class="hero__kicker reveal">Websites + Switchboard OS for gyms, clubs &amp; studios</p>
+    <h1 class="reveal">A website that fills your club. <span class="accent">$0 up front.</span></h1>
+    <p class="lede reveal">Custom-built for your club and wired into Switchboard OS. First month free, then $349/mo — cancel before month two and pay nothing.</p>
+    <div class="hero__cta reveal">
+      <a href="contact.html?plan=switchboard" class="btn btn--primary">Start your free month
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#story" class="hero__link">See how it works
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ===================== STATS STRIP ===================== -->
-<div class="strip">
-  <div class="wrap">
-    <div class="stats">
-      <div class="stat reveal"><div class="stat__v">24<em>/</em>7</div><div class="stat__k">Every visitor answered</div></div>
-      <div class="stat reveal"><div class="stat__v"><em>~</em>2 wks</div><div class="stat__k">First call to live site</div></div>
-      <div class="stat reveal"><div class="stat__v">0</div><div class="stat__k">Templates or page builders</div></div>
-      <div class="stat reveal"><div class="stat__v">90 <em>days</em></div><div class="stat__k">Free for founding clubs</div></div>
+<!-- ===================== SCROLL STORY ===================== -->
+<section class="story" id="story" aria-label="How a visitor becomes a member">
+  <div class="story__stage" data-step="0">
+    <div class="story__copy">
+      <div class="story__steps">
+        <div class="sstep">
+          <div class="sstep__n">01</div>
+          <h2>It starts with a site worth visiting.</h2>
+          <p>Designed from scratch for your club — fast, beautiful on a phone, and built to get people through the door.</p>
+        </div>
+        <div class="sstep">
+          <div class="sstep__n">02</div>
+          <h2>A visitor asks a question at 9:47&nbsp;pm.</h2>
+          <p>Switchboard answers on the spot — hours, pricing, memberships — long after the front desk has gone home.</p>
+        </div>
+        <div class="sstep">
+          <div class="sstep__n">03</div>
+          <h2>They become a lead. Automatically.</h2>
+          <p>Name, interest and the whole conversation land in your dashboard. Nothing slips through the cracks.</p>
+        </div>
+        <div class="sstep">
+          <div class="sstep__n">04</div>
+          <h2>Then a member.</h2>
+          <p>Switchboard follows up until they book a tour and join. You just say hello at the front desk.</p>
+        </div>
+      </div>
+      <div class="story__bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="story__visual" aria-hidden="true">
+      <div class="browser">
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">harborviewathletic.com</span></div>
+        <div class="site">
+          <div class="site__nav"><span class="site__logo">HARBORVIEW</span><span>Memberships</span><span>Courts</span><span>Classes</span><span class="site__btn">Book a tour</span></div>
+          <div class="site__court"></div>
+          <div class="site__hero">
+            <div class="site__eyebrow">Harborview Athletic Club</div>
+            <div class="site__h">Your best hour, every day.</div>
+            <div class="site__p">Courts, pool and classes for the whole family — ten minutes from the harbor.</div>
+            <div class="site__ctas"><span>Book a free tour</span><span>Memberships</span></div>
+          </div>
+          <div class="site__dim"></div>
+          <div class="chat">
+            <span class="chat__time">9:47 PM</span>
+            <div class="chat__msg chat__msg--them">Do you have a family membership?</div>
+            <div class="chat__msg chat__msg--us">We do — it covers two adults and kids under 18, with full court and pool access. Want to book a free tour this weekend?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lead">
+        <div class="lead__top">
+          <span class="lead__av">SM</span>
+          <div><div class="lead__name">Sarah M.</div><div class="lead__sub">Family membership</div></div>
+          <span class="lead__pill"><span class="is-lead">New lead</span><span class="is-member">Member</span></span>
+        </div>
+        <ul class="lead__rows">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Asked about family plans<small>9:47 PM</small></li>
+          <li class="later"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Follow-up email sent<small>Day 2</small></li>
+          <li class="later"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Tour booked<small>Sat 10:00</small></li>
+          <li class="later join"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6 9 17l-5-5"/></svg></i>Joined — family plan<small>Sat</small></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ===================== WORK ===================== -->
 <section class="section" id="work">
@@ -644,7 +708,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       <a href="websites.html" class="btn btn--primary">Plans &amp; pricing
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <p>// club sites from $850 · full builds with booking from $2,250</p>
+      <p>// $0 up front · first month free · then $349/mo, everything included</p>
     </div>
   </div>
 </section>
@@ -711,8 +775,8 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       <a href="contact.html" class="btn btn--primary">Request a demo
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="early-access.html" class="btn btn--ghost">Claim a founding spot</a>
-      <p>// ten founding clubs · $349/mo locked for life · first 90 days free</p>
+      <a href="websites.html" class="btn btn--ghost">See pricing</a>
+      <p>// included in every plan · first month free · cancel before month two, pay nothing</p>
     </div>
   </div>
 </section>
@@ -763,8 +827,8 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 
     <div class="faq reveal">
       <details>
-        <summary>What does a website cost?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq__a">Starter sites (1–3 pages) run $850–$1,000. Growth sites — full multi-page builds with lead capture, gallery, basic SEO and integration of your existing booking system — run $1,250–$1,750. Complete builds with a booking system set up from scratch run $2,250–$4,000. Full breakdown on the <a href="websites.html">websites page</a>.</div>
+        <summary>What does it cost?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq__a">$0 up front and your first month is free. After that it's $349/mo — your custom website, hosting, full access to Switchboard OS, priority support and unlimited minor tweaks. Cancel any time before month two starts and you're never charged. Full breakdown on the <a href="websites.html">pricing page</a>.</div>
       </details>
       <details>
         <summary>How long does it take?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -772,19 +836,19 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       </details>
       <details>
         <summary>What happens after launch?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq__a">Your call: we keep it handled — updates, tweaks, hosting questions — for $125/mo, or you take the one-time $300 self-service kit and run it yourself. No lock-in either way.</div>
+        <div class="faq__a">We keep it handled. Hosting, priority support and unlimited minor tweaks — hours, prices, photos, schedules, copy — are all part of the plan. Bigger additions like new pages or features we scope with you first.</div>
       </details>
       <details>
         <summary>What exactly is Switchboard OS?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="faq__a">A growth dashboard built for membership &amp; booking clubs. It answers website visitors 24/7 with an AI receptionist, tracks every lead, runs automatic email follow-ups and win-backs, asks every new member for a review, and sends you a monthly report. It's live now — <a href="contact.html">request a demo</a> and we'll show it running on a club like yours.</div>
       </details>
       <details>
-        <summary>What does Switchboard OS cost?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq__a">Switchboard OS launches with ten founding clubs. All ten get the full suite free for their first 90 days, then lock $349/mo for life — the rack rate rises for everyone after them. <a href="early-access.html">Claim one of the ten spots</a>.</div>
+        <summary>Is Switchboard OS extra?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq__a">No. Full access to Switchboard OS — lead capture, follow-ups, reviews and reports — is included in the $349/mo plan, alongside your website.</div>
       </details>
       <details>
         <summary>Does Switchboard OS send text messages?<span class="faq__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq__a">Email flows — follow-ups, win-backs and review asks — are live today. SMS features roll out as carrier verification clears; founding clubs get them at no extra cost when they do.</div>
+        <div class="faq__a">Email flows — follow-ups, win-backs and review asks — are live today. SMS features roll out as carrier verification clears.</div>
       </details>
     </div>
   </div>
@@ -870,6 +934,21 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       });
     },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
     els.forEach(function(el){io.observe(el)});
+  }
+  // pinned scroll story: step follows scroll position
+  var story=document.querySelector('.story'), stage=story&&story.querySelector('.story__stage');
+  if(stage){
+    var cur=-1, ticking=false;
+    var update=function(){
+      ticking=false;
+      var r=story.getBoundingClientRect(), run=r.height-stage.offsetHeight;
+      var p=run>0?Math.min(1,Math.max(0,(74-r.top)/run)):0;
+      var step=Math.min(3,Math.floor(p*4.2));
+      if(step!==cur){cur=step;stage.setAttribute('data-step',step)}
+    };
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+    window.addEventListener('resize',update);
+    update();
   }
 })();
 </script>
