@@ -545,8 +545,8 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
                 <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@yourclub.com" />
               </div>
               <div class="field">
-                <label for="phone">Phone <small>optional</small></label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(781) 555-0100" />
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 555-0100" pattern="[0-9()+\-.\s]{7,}" />
               </div>
             </div>
 
@@ -570,7 +570,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
             <button type="submit" class="btn btn--primary form__submit">Start my free month
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
-            <p class="cx__fine">No card, no commitment. Drew replies the same day, usually within hours.</p>
+            <p class="cx__fine">No card, no commitment. Drew will call you the same day, usually within hours.</p>
             <p class="cx__err" id="formErr" role="alert"></p>
           </form>
         </div>
@@ -578,31 +578,20 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
         <div class="cx__done" id="cxDone" tabindex="-1" aria-live="polite">
           <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
           <h2 id="cxDoneTitle">You're in.</h2>
-          <p>Drew will reach out today to set up a quick 15-minute call. Check your inbox — and if you'd rather not wait:</p>
-          <div class="cx__talk" style="display:flex">
-            <a href="tel:+17812011759"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Drew</a>
-            <a href="sms:+17812011759"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>Text Drew</a>
-          </div>
+          <p>Drew will call you today to set up a quick 15-minute walkthrough. Keep an eye on your phone and inbox.</p>
         </div>
       </div>
 
       <aside class="cx__side reveal">
         <h3>What happens next</h3>
         <ol class="cx__steps">
-          <li><i>1</i><div><b>Drew replies today</b><span>Usually within a few hours.</span></div></li>
-          <li><i>2</i><div><b>A 15-minute call</b><span>We learn your club and show you Switchboard OS running.</span></div></li>
-          <li><i>3</i><div><b>Live in about two weeks</b><span>You see a preview before launch. Month one is free.</span></div></li>
+          <li><i>1</i><div><b>Drew calls you today</b><span>A quick 15-minute call to learn your club and show you Switchboard OS.</span></div></li>
+          <li><i>2</i><div><b>We design and build</b><span>You see a live preview before anything ships.</span></div></li>
+          <li><i>3</i><div><b>Live in about two weeks</b><span>Month one is free. Cancel before month two, pay nothing.</span></div></li>
         </ol>
-        <div class="cx__talkwrap">
-          <p>Rather just talk? Call or text — often the fastest way to start.</p>
-          <div class="cx__talk">
-              <a href="tel:+17812011759"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Drew</a>
-              <a href="sms:+17812011759"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>Text Drew</a>
-            </div>
-        </div>
         <div class="cx__who">
           <span class="cx__av"><svg viewBox="0 0 362 333" fill="none" stroke="#EB6D2D" stroke-width="34" stroke-linecap="round" aria-hidden="true"><path d="M298 40H118a85 85 0 0 0 0 170h122"/><path d="M120 125h130a84 84 0 0 1 0 168H65"/></svg></span>
-          <div><b>Drew Golden</b>Founder · (781) 201-1759</div>
+          <div><b>Drew Golden</b>Founder, The Switchboard Company</div>
         </div>
       </aside>
     </div>
@@ -628,7 +617,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       </div>
       <div class="foot__col">
         <h4>Get in touch</h4>
-        <a href="tel:+17812011759">(781) 201-1759</a>
         <a href="contact.html">Start a project</a>
       </div>
     </div>
@@ -681,7 +669,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
     if(bad.length){
       bad.forEach(function(f){ f.setAttribute('aria-invalid','true'); });
       var first = bad[0];
-      var what = first.name === 'email' ? 'a valid email' : first.name === 'business' ? 'your club\'s name' : 'your name';
+      var what = first.name === 'email' ? 'a valid email' : first.name === 'phone' ? 'a phone number' : first.name === 'business' ? 'your club\'s name' : 'your name';
       showErr('Please add ' + what + ' so Drew can reach you.');
       first.focus();
       return;
@@ -706,7 +694,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
         window.scrollTo({top: Math.max(0, done.getBoundingClientRect().top + window.scrollY - 120)});
       })
       .catch(function(){
-        showErr('Something went wrong sending that. Please <a href="sms:+17812011759">text</a> or <a href="tel:+17812011759">call Drew at (781) 201-1759</a> instead.');
+        showErr('Something went wrong sending that. Please try again in a minute.');
       })
       .finally(function(){ btn.disabled = false; btn.style.opacity = 1; btn.firstChild.textContent = label; });
   });
@@ -715,6 +703,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
   });
 })();
 </script>
-<script src="assets/chat.js?v=1" defer></script>
+<script src="assets/chat.js?v=2" defer></script>
 </body>
 </html>

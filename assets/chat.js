@@ -20,7 +20,6 @@
     subtitle:   "Ask anything · we reply instantly",
     greeting:   "Hi! Questions about the free month or Switchboard OS?",
     opener:     "Ask me what's included, how the build works, or what Switchboard OS does for a club.",
-    phone:      "(781) 201-1759",
   };
 
   var slug = CONFIG.clientSlug, apiBase = CONFIG.apiBase;
@@ -298,7 +297,7 @@
         bodyEl.scrollTop = bodyEl.scrollHeight;
       })
       .catch(function () {
-        typing.textContent = "Sorry, I couldn't connect just now — please try again, or call or text Drew at " + CONFIG.phone + ".";
+        typing.textContent = "Sorry, I couldn't connect just now — please try again in a minute, or use the form on the contact page.";
       });
   }
   send.addEventListener("click", doSend);

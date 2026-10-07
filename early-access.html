@@ -525,7 +525,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
           </div>
           <div class="field">
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" placeholder="(781) 555-0100" />
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 555-0100" />
           </div>
         </div>
         <div class="field">
@@ -572,7 +572,6 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       </div>
       <div class="foot__col">
         <h4>Get in touch</h4>
-        <a href="tel:+17812011759">(781) 201-1759</a>
         <a href="contact.html">Start a project</a>
       </div>
     </div>
@@ -630,14 +629,14 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
         .then(function(r){ return r.json(); })
         .then(function(d){
           if(d.success){ form.reset(); note.textContent = '// you\'re on the list — talk soon.'; note.style.color = '#1a7d3c'; }
-          else { note.textContent = '// something went wrong — call or text (781) 201-1759 instead.'; note.style.color = '#c0392b'; }
+          else { note.textContent = '// something went wrong — please try again in a minute.'; note.style.color = '#c0392b'; }
         })
-        .catch(function(){ note.textContent = '// something went wrong — call or text (781) 201-1759 instead.'; note.style.color = '#c0392b'; })
+        .catch(function(){ note.textContent = '// something went wrong — please try again in a minute.'; note.style.color = '#c0392b'; })
         .finally(function(){ btn.disabled = false; btn.style.opacity = 1; });
     });
   }
 })();
 </script>
-<script src="assets/chat.js?v=1" defer></script>
+<script src="assets/chat.js?v=2" defer></script>
 </body>
 </html>
