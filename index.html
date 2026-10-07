@@ -161,7 +161,17 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 .nav__links .nav__drop a::after{display:none}
 
 /* ---------- hero (light, offer-led) ---------- */
-.hero{position:relative;padding-block:clamp(72px,11vw,150px) clamp(48px,6vw,80px);text-align:center}
+.hero{position:relative;padding-block:clamp(72px,11vw,150px) clamp(48px,6vw,80px);text-align:center;overflow:hidden;
+  background:radial-gradient(70% 60% at 50% 38%,#FDEFE4 0%,rgba(251,234,222,.35) 45%,transparent 75%),var(--paper)}
+.hero .wrap{position:relative;z-index:1}
+.hero__mark{position:absolute;left:50%;top:50%;width:min(640px,88vw);transform:translate(-50%,-50%);pointer-events:none;z-index:0;opacity:.13}
+.hero__mark path{fill:none;stroke:var(--orange);stroke-width:26;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:markDraw 2.2s var(--ease) .15s forwards}
+.hero__mark circle{fill:var(--orange);opacity:0;animation:markDot .5s var(--ease) forwards}
+.hero__mark circle.hole{fill:#FCF1E8}
+.hero__mark .d1{animation-delay:.2s}.hero__mark .d2{animation-delay:1.3s}.hero__mark .d3{animation-delay:.35s}.hero__mark .d4{animation-delay:1.45s}
+@keyframes markDraw{to{stroke-dashoffset:0}}
+@keyframes markDot{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.hero__mark path{stroke-dashoffset:0}.hero__mark circle{opacity:1}}
 .hero__kicker{font-size:.98rem;color:var(--muted);font-weight:500}
 .hero h1{
   font-size:clamp(2.9rem,7.6vw,6.6rem);font-weight:600;letter-spacing:-.045em;line-height:.98;
@@ -177,7 +187,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(235,109,45,.5)}50%{box-shadow:0 0 0 7px rgba(235,109,45,0)}}
 
 /* ---------- scroll story (pinned) ---------- */
-.story{position:relative;height:440vh}
+.story{position:relative;height:250vh}
 .story__stage{
   position:sticky;top:74px;height:calc(100svh - 74px);min-height:560px;
   display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,4.5vw,72px);align-items:center;
@@ -210,6 +220,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 }
 .browser__bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:#F6F4EF}
 .browser__bar i{width:9px;height:9px;border-radius:50%;background:#DDD8CE}
+.browser__tag{margin-left:auto;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-deep);background:var(--orange-soft);border-radius:999px;padding:3px 10px}
 .browser__url{margin-left:12px;flex:1;max-width:50%;font-size:.72rem;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 12px;white-space:nowrap;overflow:hidden}
 .site{position:relative;aspect-ratio:16/10.4;background:#0F241D;color:#F3EEE3;overflow:hidden;transition:filter .6s var(--ease)}
 .site__nav{display:flex;align-items:center;gap:3cqw;padding:2.4cqw 4cqw;font-size:1.25cqw;letter-spacing:.04em;color:rgba(243,238,227,.75)}
@@ -282,7 +293,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 .story__stage[data-step="2"] .chat,.story__stage[data-step="3"] .chat{opacity:.4}
 
 @media(max-width:900px){
-  .story{height:400vh}
+  .story{height:230vh}
   .story__stage{grid-template-columns:1fr;align-content:center;gap:24px;min-height:0}
   .story__steps{min-height:12.5rem}
   .sstep h2{font-size:clamp(1.6rem,6.4vw,2.2rem)}
@@ -532,6 +543,14 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 <main>
 <!-- ===================== HERO ===================== -->
 <section class="hero">
+  <svg class="hero__mark" viewBox="0 0 362 333" aria-hidden="true">
+    <path pathLength="1" d="M298 40H118a85 85 0 0 0 0 170h122"/>
+    <path pathLength="1" d="M120 125h130a84 84 0 0 1 0 168H65"/>
+    <circle class="d1" cx="298" cy="40" r="20"/><circle class="hole d1" cx="298" cy="40" r="8"/>
+    <circle class="d2" cx="240" cy="210" r="20"/><circle class="hole d2" cx="240" cy="210" r="8"/>
+    <circle class="d3" cx="120" cy="125" r="20"/><circle class="hole d3" cx="120" cy="125" r="8"/>
+    <circle class="d4" cx="65" cy="293" r="20"/><circle class="hole d4" cx="65" cy="293" r="8"/>
+  </svg>
   <div class="wrap">
     <p class="hero__kicker reveal">Websites + Switchboard OS for gyms, clubs &amp; studios</p>
     <h1 class="reveal">A website that fills your club. <span class="accent">$0 up front.</span></h1>
@@ -578,14 +597,14 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 
     <div class="story__visual" aria-hidden="true">
       <div class="browser">
-        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">harborviewathletic.com</span></div>
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">yourclub.com</span><span class="browser__tag">Example</span></div>
         <div class="site">
-          <div class="site__nav"><span class="site__logo">HARBORVIEW</span><span>Memberships</span><span>Courts</span><span>Classes</span><span class="site__btn">Book a tour</span></div>
+          <div class="site__nav"><span class="site__logo">YOUR CLUB</span><span>Memberships</span><span>Courts</span><span>Classes</span><span class="site__btn">Book a tour</span></div>
           <div class="site__court"></div>
           <div class="site__hero">
-            <div class="site__eyebrow">Harborview Athletic Club</div>
+            <div class="site__eyebrow">Example club website</div>
             <div class="site__h">Your best hour, every day.</div>
-            <div class="site__p">Courts, pool and classes for the whole family — ten minutes from the harbor.</div>
+            <div class="site__p">Courts, pool and classes for the whole family — your club, your story, built from scratch.</div>
             <div class="site__ctas"><span>Book a free tour</span><span>Memberships</span></div>
           </div>
           <div class="site__dim"></div>
