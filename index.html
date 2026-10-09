@@ -357,6 +357,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 
 /* ---------- feature grid (websites) ---------- */
 .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:clamp(36px,4vw,56px)}
+.feat--wide{grid-column:span 2}
 .feat{
   background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
   padding:1.8rem 1.6rem;
@@ -511,6 +512,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
 }
 @media(max-width:560px){
   .feats{grid-template-columns:1fr}
+  .feat--wide{grid-column:auto}
   .mods{grid-template-columns:1fr}
   .loop__row{grid-template-columns:1fr}
   .lstep:not(:last-child){border-right:0}
@@ -704,7 +706,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
     <div class="shead reveal">
       <span class="eyebrow">The website</span>
       <h2 class="head">Everything a club site needs. Nothing it doesn't.</h2>
-      <p class="lede">No templates, no page builders, no bloat — a hand-built site that loads fast, ranks locally, and makes joining your club the obvious next step.</p>
+      <p class="lede">No templates, no page builders, no bloat — a custom site that loads fast, ranks locally, and makes joining your club the obvious next step.</p>
     </div>
 
     <div class="feats">
@@ -728,12 +730,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
         <h3>Local SEO foundation</h3>
         <p>Structured to rank for the searches that fill memberships — "gym near me," your town, your programs.</p>
       </div>
-      <div class="feat reveal">
-        <span class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-        <h3>Fast on every phone</h3>
-        <p>Hand-written code with none of the page-builder bloat — so it loads instantly on the phones your members actually use.</p>
-      </div>
-      <div class="feat reveal">
+      <div class="feat feat--wide reveal">
         <span class="feat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
         <h3>Live in about two weeks</h3>
         <p>From first call to launch in roughly two weeks — then we keep it running as part of your plan.</p>
@@ -744,7 +741,7 @@ h2.head{font-size:clamp(2.1rem,4.8vw,3.4rem);margin-top:.55rem;letter-spacing:-.
       <a href="websites.html" class="btn btn--primary">Plans &amp; pricing
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <p>// $0 up front · first month free · then $349/mo, everything included</p>
+      <p>// $0 up front · first 30 days free · then $349/mo, everything included</p>
     </div>
   </div>
 </section>
