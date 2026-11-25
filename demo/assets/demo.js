@@ -19,6 +19,7 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function cap(s) { s = String(s || ""); return s.charAt(0).toUpperCase() + s.slice(1); }
   function $(sel, root) { return (root || document).querySelector(sel); }
   function el(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
   function fill(tpl, lead) {
@@ -27,7 +28,7 @@
       .replace(/\{name\}/g, lead.name)
       .replace(/\{topic\}/g, lead.topic)
       .replace(/\{asked\}/g, lead.question
-        ? "You asked: “" + lead.question + "” " + C.contactPerson + " will get back to you with an answer personally."
+        ? "You asked: “" + cap(lead.question.replace(/[\s?.!]+$/, "")) + "?” " + cap(C.contactPerson) + " will get back to you with an answer personally."
         : "You asked about " + String(lead.topic).toLowerCase() + ".")
       .replace(/\{club\}/g, C.name)
       .replace(/\{contact\}/g, C.contactPerson);
@@ -227,7 +228,8 @@
   var ch = C.chat;
   var BUBBLE = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A2.5 2.5 0 0 1 3 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var SEND = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10 17 3l-4 14-3-6-7-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
-  var avatar = C.logo ? '<img src="' + esc(C.logo) + '" alt="">' : '<b style="color:var(--ink);font-size:12px">' + esc(C.monogram || "") + '</b>';
+  // A wide wordmark logo is unreadable at avatar size, so those clubs set logoWide and get the monogram.
+  var avatar = C.logo && !C.logoWide ? '<img src="' + esc(C.logo) + '" alt="">' : '<b style="color:var(--accent);font-size:11px;letter-spacing:.02em">' + esc(C.monogram || "") + '</b>';
 
   document.body.appendChild(el('<button class="chat-launch" type="button" aria-label="Chat with ' + esc(C.name) + '">' + BUBBLE + '</button>'));
   document.body.appendChild(el('<div class="chat-tip" role="status"><span>' + esc(ch.tip) + '</span><button type="button" aria-label="Dismiss">×</button></div>'));
@@ -317,7 +319,19 @@
     if (skipIntro) botSay("What's your name?");
     else botSay("Happy to. What's your name?");
   }
+  function looksLikeQuestion(text) {
+    return /\?\s*$/.test(text) || text.trim().split(/\s+/).length > 4 ||
+      /^(do|does|is|are|can|what|when|where|how|who|why|which)\b/i.test(text.trim());
+  }
   function captureStep(text) {
+    // Someone asking another question mid-capture shouldn't become their own name.
+    if (capture.step === "name" && looksLikeQuestion(text)) {
+      var q = match(text);
+      var ask = "And what's your name, so " + C.contactPerson + " can follow up?";
+      if (q) botSay(q.a, function () { botSay(ask); });
+      else { lastQuestion = text.slice(0, 120); capture.topic = "Question: “" + text.slice(0, 60) + "”"; botSay("I'll pass that one along too. " + ask); }
+      return;
+    }
     if (capture.step === "name") {
       capture.name = text.trim().replace(/\s+/g, " ").slice(0, 60);
       capture.step = "email";
@@ -419,7 +433,7 @@
           '<br>Subject: ' + esc(fill(X.reply.subject, lead)) + '</div><div class="mail__body">' + esc(fill(X.reply.body, lead)) + '</div></div>'
       },
       {
-        t: who + " gets an alert", time: "0:01",
+        t: cap(who) + " gets an alert", time: "0:01",
         p: "The moment it lands, with what they asked about, so a call back takes ten seconds.",
         h: '<div class="phone"><div class="notif"><div class="notif__ic">S</div><div><b>New lead: ' + esc(lead.name) + '</b>' +
           '<span>' + esc(lead.topic) + ' · via ' + esc(lead.source.toLowerCase()) + '</span></div><small>now</small></div></div>'
