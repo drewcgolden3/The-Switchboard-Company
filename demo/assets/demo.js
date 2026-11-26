@@ -5,13 +5,46 @@
  * club's site, a chat assistant answering from the club's own facts, and the
  * "behind the scenes" panel showing what Switchboard does with a lead.
  *
- * Everything runs in the browser. Nothing is sent anywhere: the form and chat
- * never leave the page, and the panel is a walkthrough, not live data.
+ * Everything runs in the browser: what people type into the form and chat
+ * never leaves the page, and the panel is a walkthrough, not live data. The
+ * only thing sent is anonymous visit tracking (see "visit tracking" below).
  */
 (function () {
   "use strict";
   var C = window.CLUB;
   if (!C) { document.body.textContent = "Missing club.js"; return; }
+
+  // ---------- visit tracking ----------
+  // Tells Drew which prospects opened their demo and what they tried. Only
+  // the kind of event and, for chat questions, which topic it matched are
+  // sent: never names, emails or the words someone typed. Skipped on
+  // localhost, and on any browser that has opened a demo with ?me=1 (Drew's).
+  var track = (function () {
+    var ENDPOINT = "https://switchboard-os.vercel.app/api/demo-event";
+    var off = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+    try {
+      if (/[?&]me=1\b/.test(location.search)) localStorage.setItem("sbDemoMe", "1");
+      if (/[?&]me=0\b/.test(location.search)) localStorage.removeItem("sbDemoMe");
+      if (localStorage.getItem("sbDemoMe") === "1") off = true;
+    } catch (e) { /* storage blocked: track normally */ }
+    var sid = "";
+    try {
+      sid = sessionStorage.getItem("sbDemoSid") || "";
+      if (!sid) { sid = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem("sbDemoSid", sid); }
+    } catch (e) { sid = Math.random().toString(36).slice(2); }
+    var sent = {};
+    return function (event, detail, once) {
+      if (off || (once && sent[event])) return;
+      sent[event] = true;
+      var payload = JSON.stringify({ slug: C.slug, club: C.name, event: event, detail: detail || null, sessionId: sid, referrer: document.referrer || null });
+      try {
+        if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, payload)) return;
+        fetch(ENDPOINT, { method: "POST", body: payload, keepalive: true, mode: "cors" }).catch(function () {});
+      } catch (e) { /* never let tracking break the demo */ }
+    };
+  })();
+  // A real visitor stays a moment; link scanners load and leave.
+  setTimeout(function () { if (document.visibilityState !== "hidden") track("view", null, true); else document.addEventListener("visibilitychange", function v() { if (document.visibilityState === "visible") { document.removeEventListener("visibilitychange", v); track("view", null, true); } }); }, 2500);
 
   // ---------- helpers ----------
   function esc(s) {
@@ -203,7 +236,7 @@
         '<label class="field">Phone<input name="phone" type="tel" autocomplete="tel"></label>' +
         '<label class="field">I\'m interested in<select name="topic">' + B.interests.map(function (i) { return '<option>' + esc(i) + '</option>'; }).join("") + '</select></label>' +
         '<button class="btn" type="submit">' + esc(B.submit) + '</button>' +
-        '<p class="form__fine">Demo form. Nothing is sent, and no one will contact you.</p>' +
+        '<p class="form__fine">Demo form. Your details stay on this page, and no one will contact you.</p>' +
       '</form>' +
     '</div></section>'
   );
@@ -306,6 +339,7 @@
       return startCapture(lastTopic);
     }
     var q = match(text);
+    track("question", q ? q.topic : "Unanswered question");
     if (q) {
       lastTopic = q.topic;
       lastQuestion = null;
@@ -354,6 +388,7 @@
       capture.email = text.trim();
       var lead = mkLead(capture.name, capture.email, capture.topic, "Website chat");
       lead.question = lastQuestion;
+      track("lead", "via chat");
       capture = null;
       botSay(fill(ch.done, lead), function () {
         setTimeout(function () { openBTS(lead); }, reduced ? 0 : 900);
@@ -364,6 +399,7 @@
   function openChat() {
     tip.classList.remove("on");
     chatBox.classList.add("on");
+    track("chat_open", null, true);
     if (!started) {
       started = true;
       botSay(ch.greeting, function () { chips(ch.suggestions); });
@@ -398,6 +434,7 @@
       return;
     }
     var lead = mkLead((first + " " + String(d.get("last") || "")).trim(), email, String(d.get("topic")), "Website form");
+    track("lead", "via form: " + String(d.get("topic")));
     form.innerHTML = '<div class="form__done"><div class="eyebrow">Got it</div><h3>Thanks, ' + esc(lead.first) + '!</h3>' +
       '<p>On the real site, you\'d have a reply in your inbox right now. Here\'s everything that just happened behind the scenes.</p>' +
       '<button class="btn" type="button" data-bts>See behind the scenes ' + ARROW + '</button></div>';
@@ -479,6 +516,7 @@
   }
 
   function openBTS(lead) {
+    track("panel_open", lead ? null : "from the Behind the scenes button", true);
     currentLead = lead || currentLead || SAMPLE;
     renderBTS(currentLead);
     closeChat();
@@ -502,5 +540,6 @@
   });
   document.addEventListener("click", function (e) {
     if (e.target.closest && e.target.closest("[data-bts]")) openBTS();
+    if (e.target.closest && e.target.closest(".bts__cta a")) track("cta_click", null, true);
   });
 })();

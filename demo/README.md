@@ -14,8 +14,11 @@ Live example: https://switchboardcompany.com/demo/south-shore-athletic-club/
 - `<slug>/club.js`: everything specific to one club (copy, colours, fonts,
   prices, schedule, chat answers, follow-up wording).
 - `<slug>/img/`: that club's photos. `img/hero.jpg` is also the link preview.
-- Nothing is sent anywhere. The form and chat stay in the browser, and the
-  panel is a walkthrough, not live data. Pages are `noindex`.
+- What people type never leaves the page. The only thing sent is anonymous
+  visit tracking (opened, chatted, which topic, tested the form) to Switchboard
+  OS, which emails Drew and shows it at /owner/demos. Open any demo once with
+  `?me=1` so your own visits are ignored (`?me=0` undoes it).
+- The panel is a walkthrough, not live data. Pages are `noindex`.
 
 ## Make a new one
 
