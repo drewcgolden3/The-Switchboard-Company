@@ -72,7 +72,9 @@
   );
 
   var logo = C.logo
-    ? '<a class="nav__logo" href="#top"><img src="' + esc(C.logo) + '" alt="' + esc(C.name) + '"></a>'
+    ? (C.logoName
+      ? '<a class="nav__logo nav__logo--named" href="#top"><img src="' + esc(C.logo) + '" alt=""><span>' + esc(C.name) + '</span></a>'
+      : '<a class="nav__logo" href="#top"><img src="' + esc(C.logo) + '" alt="' + esc(C.name) + '"></a>')
     : '<a class="wordmark" href="#top"><i>' + esc(C.monogram || C.name.slice(0, 2)) + '</i><span>' + esc(C.name) + '</span></a>';
   var navLinks = (C.nav || []).map(function (n) { return '<a href="' + esc(n[1]) + '">' + esc(n[0]) + '</a>'; }).join("");
   parts.push(
@@ -331,6 +333,17 @@
       if (q) botSay(q.a, function () { botSay(ask); });
       else { lastQuestion = text.slice(0, 120); capture.topic = "Question: “" + text.slice(0, 60) + "”"; botSay("I'll pass that one along too. " + ask); }
       return;
+    }
+    if (capture.step === "name" && /\S+@\S+\.\S+/.test(text)) {
+      // They gave their email first: keep it and still ask for a name.
+      capture.earlyEmail = (text.match(/\S+@\S+\.\S+/) || [text])[0];
+      botSay("Got your email, thanks! And what's your name?");
+      return;
+    }
+    if (capture.step === "name" && capture.earlyEmail) {
+      capture.name = text.trim().replace(/\s+/g, " ").slice(0, 60);
+      capture.step = "email";
+      return captureStep(capture.earlyEmail);
     }
     if (capture.step === "name") {
       capture.name = text.trim().replace(/\s+/g, " ").slice(0, 60);

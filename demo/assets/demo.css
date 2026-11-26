@@ -95,6 +95,9 @@ h1, h2, h3 { font-family: var(--heading); font-weight: var(--heading-weight, 500
 .nav { background: var(--paper); border-bottom: 1px solid var(--line); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
 .nav__logo img { height: 46px; width: auto; }
+.nav__logo--named { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+.nav__logo--named span { font-family: var(--heading); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; line-height: 1.15; }
+@media (max-width: 520px) { .nav__logo--named span { font-size: 15px; max-width: 150px; } }
 .nav__links { display: flex; align-items: center; gap: 26px; font-size: 14.5px; color: var(--ink-2); }
 .nav__links a { text-decoration: none; }
 .nav__links a:hover { color: var(--ink); }
