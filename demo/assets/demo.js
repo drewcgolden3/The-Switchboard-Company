@@ -340,6 +340,14 @@
     }
     var q = match(text);
     track("question", q ? q.topic : "Unanswered question");
+    if (q && q.capture) {
+      // An answer that can't be given in chat (e.g. unpublished prices): the
+      // reply itself asks for their name, so go straight into lead capture.
+      lastTopic = q.topic;
+      lastQuestion = text.slice(0, 120);
+      botSay(q.a, function () { capture = { step: "name", topic: q.topic }; });
+      return;
+    }
     if (q) {
       lastTopic = q.topic;
       lastQuestion = null;
