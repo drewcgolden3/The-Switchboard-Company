@@ -433,7 +433,7 @@
           '<br>Subject: ' + esc(fill(X.reply.subject, lead)) + '</div><div class="mail__body">' + esc(fill(X.reply.body, lead)) + '</div></div>'
       },
       {
-        t: cap(who) + " gets an alert", time: "0:01",
+        t: cap(who) + (C.contactPlural ? " get" : " gets") + " an alert", time: "0:01",
         p: "The moment it lands, with what they asked about, so a call back takes ten seconds.",
         h: '<div class="phone"><div class="notif"><div class="notif__ic">S</div><div><b>New lead: ' + esc(lead.name) + '</b>' +
           '<span>' + esc(lead.topic) + ' · via ' + esc(lead.source.toLowerCase()) + '</span></div><small>now</small></div></div>'
