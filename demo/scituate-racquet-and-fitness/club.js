@@ -183,7 +183,7 @@ window.CLUB = {
     report: [["38", "new enquiries"], ["15", "came in for a tour"], ["7", "new memberships"], ["$1,195/mo", "in new membership revenue"]],
     cta: {
       title: "Want this running at SRF?",
-      text: "Right now, almost every question on your site ends with “call” or “email us,” and your pickleball page is blank. Switchboard answers in seconds, day or night, follows up automatically, and puts every enquiry in one place, without adding work for the front desk.",
+      text: "Right now, the only way to ask about joining SRF is to call or email, and there isn't a single form on the site. Switchboard captures every enquiry, answers in seconds day or night, follows up automatically, and puts every lead in one place, without adding work for the front desk.",
       button: "Start your free month",
       url: "https://switchboardcompany.com/early-access.html",
       fine: "$0 up front · first 30 days free · cancel anytime. Or just reply to Drew's email."
